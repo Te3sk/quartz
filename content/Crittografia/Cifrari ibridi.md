@@ -1,0 +1,30 @@
+---
+title: Cifrari Ibridi
+alias: 
+- ibridi
+- hybrid
+- AES/RSA
+tags: #critto
+---
+## Necessità
+I [[Crittografia/Cifrari Simmetrici per la comunicazione di massa|cifrari simmetrici]] e i [[Crittografia/Cifrari a Chiave Pubblica|cifrari asimmetrici]] vengono in genere usati in combinazione dando origine ai <span style="color:#ff82b2"><b>cifrari ibridi</b></span>, in cui un cifrario a chiave pubblica è usato per lo scambio della chiave segreta che viene impiegata nelle successive comunicazioni simmetriche.
+Vedremo come esempio la combinazione [[Crittografia/RSA|RSA]]/[[Crittografia/AES (Advanced Encryption Standard)|AES]].
+# Funzionamento
+La chiave segreta trasmessa con l'RSA, detta <span style="color:#ff82b2"><b>chiave di sessione</b></span> e indicata con $\textcolor{#ff82b2}{k[session]}$, può essere modificata in ogni nuovo interscambio senza che i due partner debbano incontrarsi. In questo caso, il cifrario asimmetrico <span style="color:#ff82b2"><i>resiste agli attacchi chosen plain-text</i></span> se "prive di semantica". Inoltre la loro comunicazione non soffrirà della lentezza dell'RSA dato che questo cifrario sarà usato raramente e le comunicazioni saranno brevi perché lo sono le chiavi.
+Questo protocollo scambia i messaggi segreti nella forma $\textcolor{#ff82b2}{\langle C_{RSA}(k[session], k[pub]),\:C_{AES}(m,k[session])\rangle}$. La stessa $k[session]$ può essere utilizzata in più comunicazioni successive per ammortizzare il costo di utilizzazione del cifrario asimmetrico (prassi sconsigliata).
+Il mittente ha il compito di generare $k[session]$ e inviarla al destinatario prima del messaggio vero e proprio. Per fare ciò, ha bisogno di risorse computazionali sufficienti a garantire la creazione di una chiave segreta, il che non è scontato. Si preferisce infatti attribuire <span style="color:#ff82b2"><i>pari responsabilità al mittente e al destinatario</i></span> fornendo loro strumenti pubblici per la generazione e lo scambio delle chiave che possono sostituire l'RSA. Uno di questi è l'<span style="color:#ff82b2"><b>algoritmo DH</b></span> proposto da Diffie e Hellman.
+## Protocollo DH per lo scambio pubblico di chiavi
+L'algoritmo sfrutta la proprietà di <span style="color:#ff82b2"><i>funzione one-way del</i></span> <span style="color:#ff82b2"><b>logaritmo discreto</b></span>. I due utenti (<span style="color:#2e80f2"><b>usr 1</b></span> e <span style="color:#2e80f2"><b>usr 2</b></span>) generano la chiave $k[session]$ in modo incrementale inviandosi in chiaro alcuni pezzi di essa:
+- <span style="color:#2e80f2"><b>usr 1</b></span> e <span style="color:#2e80f2"><b>usr 2</b></span> si accordano pubblicamente su un <span style="color:#ff82b2"><i>numero primo</i></span> $\textcolor{#ff82b2}{p}$ molto grande (almeno 1024 bit) e su un <span style="color:#ff82b2"><i>generatore</i></span> $\textcolor{#ff82b2}{g}$ di $\textcolor{#ff82b2}{\mathcal{Z}_p^*}$. Se gli utenti non sono in grado di generare una coppia $\langle p,g\rangle$ possono usare una coppia pubblica messa a disposizione nel sistema.
+- <span style="color:#2e80f2"><b>usr 1</b></span> estrae un <span style="color:#ff82b2"><i>intero positivo casuale</i></span> $\textcolor{#ff82b2}{x}<p$, calcola $\textcolor{#ff82b2}{X=g^x \text{ mod }\:\,p}$ e lo spedisce a <span style="color:#2e80f2"><b>usr 2</b></span> <span style="color:#ff82b2"><i>in chiaro</i></span>. Dato che diversi valori di $x$ generano diversi valori di $X$, questo può assumere un qualsiasi valore tra $1$ e $p-1$.
+- <span style="color:#2e80f2"><b>usr 2</b></span> estrae un <span style="color:#ff82b2"><i>intero positivo casuale</i></span> $\textcolor{#ff82b2}{y}<p$, calcola $\textcolor{#ff82b2}{Y=g^y \text{ mod }\:\,p}$ e lo spedice a <span style="color:#2e80f2"><b>usr 1</b></span> <span style="color:#ff82b2"><i>in chiaro</i></span>.
+- <span style="color:#2e80f2"><b>usr 1</b></span> riceve $Y$ e calcola $\textcolor{#ff82b2}{k[session]=Y^x \text{ mod }\:\,p=g^{xy} \text{ mod }\:\,p}$
+- <span style="color:#2e80f2"><b>usr 2</b></span> riceve $X$ e calcola $\textcolor{#ff82b2}{k[session]=X^y \text{ mod }\:\,p=g^{yx}\text{ mod }\:\,p}$
+Alla fine del protocollo entrambi gli utenti hanno generato la stessa $k[session]$ che viene usata per le cifrature simmetriche. Un <span style="color:#ff82b2"><i>crittoanalista passivo</i></span> può aver intercettato i valori $p,g,X,Y$ scambiati in chiaro tra gli utenti, ma dovrebbe comunque calcolare il <span style="color:#ff82b2"><b>logaritmo discreto</b></span> di $X$ o di $Y$.
+### Attacco men in-the-middle
+Un <span style="color:#ff82b2"><b>crittoanalista attivo</b></span> potrebbe scegliere un <span style="color:#ff82b2"><i>intero qualsiasi</i></span> $\textcolor{#ff82b2}{z}$, calcolare $\textcolor{#ff82b2}{Z}=g^z \text{ mod }\:\,p$ e frapporsi nel canale tra <span style="color:#2e80f2"><b>usr 1</b></span> e <span style="color:#2e80f2"><b>usr 2</b></span>, bloccando le comunicazione e sostituendole con le proprie.
+Il crittoanalista cattura $X$ e $Y$ (di usr 1 e usr 2) e <span style="color:#ff82b2"><i>risponde ad entrambi</i></span> con $\textcolor{#ff82b2}{Z}$. Gli utenti interpretano $Z$ come proveniente dall'altro e costruiscono le chiavi
+| $\textcolor{#ff82b2}{K_A=Z^x \text{ mod }\:\,p=g^{xz}\text{ mod }\:\,p}$ | |$\textcolor{#ff82b2}{K_B=Z^y \text{ mod }\:\,p = g^{yz} \text{ mod }\:\,p}$ |
+| ----------------------------------------------------------------  | -------- | --------------------------------------------------------------------------- |
+|                                                                 |         |                                                                             |
+con le quali continueranno la comunicazione con il crittoanalista che colloquia con <span style="color:#2e80f2"><b>usr 1</b></span> usando $\textcolor{#ff82b2}{K_A}$ e con <span style="color:#2e80f2"><b>usr 2</b></span> usando $\textcolor{#ff82b2}{K_B}$.

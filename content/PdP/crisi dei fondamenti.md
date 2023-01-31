@@ -1,0 +1,5 @@
+# Crisi dei fondamenti
+Nel '600 vediamo uno sciluppo dei calcoli, accompagnato però da contraddizioni e paradossi, come il paradosso dell'infinito, gli infinitesimi, i limiti, ... . Inoltre nel '800 si comincia a parlare di geometria non euclidea.
+Tutto questo fa perdere alla matematica la sua certezza. Nasce così la nuova disciplina dei fondamenti di matematica, che mostra la consistenza dell'analisi, e che si basa sulla consistenza dei numeri, la quale si riduce all'aritmetica, definita su $\mathbb{N}$. Si mostra poi che anche la geometria si basa sull'analisi.
+All'inizio del '900, [Ferge](https://en.wikipedia.org/wiki/Gottlob_Frege) dice che la logica non è fondata sulla amtematica in forma logica, nasce così l'**ideografia** ($\forall , \exists , ...$) e la notazione delle regole sintattiche ($\frac{\vdash A \rightarrow B, A}{\vdash B}$).
+Entra in gioco [Hilbert](https://it.wikipedia.org/wiki/David_Hilbert), che definisce il **metodo assiomatico**, dicendo che fare matematica vuol dire derivare degli assiomi con la logica.
