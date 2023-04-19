@@ -29,7 +29,7 @@ Definire un problema per un agente significa <span style="color:#ff82b2"><i>cara
 | L'apparato percettivo è in grado di dare una conoscenza completa dell'ambiente o almeno tutto quello che serve a decidere l'azione. Non c'è bisogno di mantenere uno stato del mondo esterno | Sono presenti limiti o inaccuratezze nell'apparato sensoriale               |
 |                                                                                                                                                                                              |                                                                             |
 
-## Ambiente singolo / multiagente
+## Agente singolo / multiagente
 Il mondo può anche cambiare per <span style="color:#ff82b2"><b>eventi</b></span>, non solo per azioni di agenti. Un ambiente multiagente presenta più di un agente e si distingue in:
 
 | Ambiente multi-agente <span style="color:#ff82b2"><b>competitivo</b></span> | Ambiente multi-agente <span style="color:#ff82b2"><b>cooperativo</b></span> |

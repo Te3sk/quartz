@@ -6,7 +6,7 @@ L'<span style="color:#ff82b2"><b>intelligenza artificiale</b></span> non è una 
 # Agenti intelligenti
 L'approccio moderno all'IA consiste nella costruzione di <span style="color:#ff82b2"><b>agenti intelligenti</b></span>, questo approccio ci offre un quadro di rifermineto ed una prospettiva diversa dall'analisi dei sistemi software. É comoda per trattare sistemi razionali (<span style="color:#ff82b2"><i>uniformità</i></span>) e vedremo schemi di agenti contenitori di funzionalità.
 Il primo obiettivo è quello di trovare agenti per la risoluzione di problemi vista come una <span style="color:#ff82b2"><i>ricerca</i></span> in uno <span style="color:#ff82b2"><i>spazio di stati</i></span> (*problem solving*).
-![Ciclo percezione-azione](IntroAI/assets/ciclo_percezione-azione.png)
+![Ciclo percezione-azione](IntroAI/assets/pictures/ciclo_percezione-azione.png)
 ## Caratteristiche degli agenti
 - Sono <span style="color:#ff82b2"><b>situati:</b></span> ricevono percezioni da un ambiente ed agiscono su questo mediante azioni (<span style="color:#ff82b2"><i>attuatori</i></span>)
 - Hanno <span style="color:#ff82b2"><b>abilità sociale:</b></span> sono capaci di comunicare, collaborare e difendersi da altri agenti
@@ -90,7 +90,7 @@ La scelta dell'azione è un accesso a una *tabella* che associa un'azione ad ogn
 - Di difficile aggiornamento, apprendimento complesso
 Noi vogliamo realizzare agenti razionali con programma compatto.
 ## Agenti reattivi semplici
-![schema Agente reattivo semplice](/IntroAI/assets/agente_reattivo.png)
+![schema Agente reattivo semplice](IntroAI/assets/pictures/agente_reattivo.png)
 ```pseudo-code
 function Agente-Reattivo-Semplice (percezione) returns azione
 	persistent: regole    // insieme di regole
@@ -102,7 +102,7 @@ return azione
 ```
 Non c'è storia da memorizzare, si reagisce solo alle situazioni attuali. Assume che l'ambiente sia completamente osservabile.
 ## Agenti basati su modello
-![Schema Agente basato su Modello](/IntroAi/assets/agente_basato_su_modello.png)
+![Schema Agente basato su Modello](IntroAI/assets/pictures/agente_basato_su_modello.png)
 ```pseudo-code
 function Agente-Basato-Su-Modello (percezione) returns azione
 	persistent: stato,    // descrizione stato corrente
@@ -116,19 +116,19 @@ return azione
 ```
 Rispetto all'agente reattivo semplice, abbiamo in più <span style="color:#ff82b2"><i>conoscienza sulle azioni del mondo</i></span>. Lo stato è un'aggiornamento di stato, azione, percezione e modello.
 ## Agenti con obiettivo
-![Schema agente con obiettivo](IntroAI/assets/agente_con_obiettivo.png)
+![Schema agente con obiettivo](IntroAI/assets/pictures/agente_con_obiettivo.png)
 Sono guidati da un <span style="color:#ff82b2"><i>obiettivo nella scelta dell'azione</i></span>, è fornito un goal esplicito (es. città da raggiungere). A volte l'azione migliore dipende da qual è l'biettivo da raggiungere, devono pianificare una <span style="color:#ff82b2"><i>sequenza di azioni</i></span> per raggiungerlo. Sono meno efficienti ma <span style="color:#ff82b2"><i>più flessibili</i></span> di un agente reattivo, dato che l'obiettivo può cambiare non essendo codificato nelle regole.
 ## Agenti con valutazione di utilità
-![schema agenti con valutazione di utilità](IntroAI/assets/agente_con_valutazione_di_utilità.png)
+![schema agenti con valutazione di utilità](IntroAI/assets/pictures/agente_con_valutazione_di_utilità.png)
 Possono esserci <span style="color:#ff82b2"><i>obiettivi alternativi</i></span> (o più modi per raggiungerlo): l'agente deve decidere verso quali di questi muoversi, è necessaria una <span style="color:#ff82b2"><b>funzione utilità</b></span> che associa ad uno stato obiettivo un numero reale. Ci sono alcuni obiettivi più facilmente raggiungibili di altri, la funzione utilità tiene conto anche della <span style="color:#ff82b2"><i>probabilità di successo</i></span>.
 ## Agenti che apprendono
-![schema agenti che apprendono](IntroAI/assets/agente_che_apprende.png)
+![schema agenti che apprendono](IntroAI/assets/pictures/agente_che_apprende.png)
 1. <span style="color:#ff82b2"><b>Componente di apprendimento:</b></span> produce cambiamenti al programma agente, migliora le prestazioni adattando i suoi componenti, apprendendo dall'ambiente
 2. <span style="color:#ff82b2"><b>Elemento esecutivo (<i>performance element</i>):</b></span> Il programma agente (visto sinora per decidere le azioni)
 3. <span style="color:#ff82b2"><b>Elemento critico:</b></span> osserva e da feedback sul comportamento
 4. <span style="color:#ff82b2"><b>Generatore di problemi:</b></span> suggerisce nupve situazioni da esplorare
 # Tipi di rappresentazione
-![tipi di rappresentazione](IntroAI/assets/tipi_di_rappresentazione.png)
+![tipi di rappresentazione](IntroAI/assets/pictures/tipi_di_rappresentazione.png)
 - rappresentazione atomica: solo il passaggio da uno stato all'altro.
 - rappresentazione fattorizzata: nello stato ci sono più variabili e attributi che assumono valore diverso
 - strutturata: aggiunge relazione fra gli stati

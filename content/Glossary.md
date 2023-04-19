@@ -6,6 +6,20 @@ alias:
 - meaning
 tags: #critto
 ---
+# Interazione uomo-macchina
+## Design
+Da Treccani.it: design s. ingl. [propr. «disegno, progetto», dal fr. dessein, che a sua volta è dall’ital. disegno], usato in ital. al masch. – Nella produzione industriale, progettazione (detta più precisamente industrial design) che mira a conciliare i requisiti tecnici, funzionali ed economici degli oggetti prodotti in serie, così che la forma che ne risulta è la sintesi di tale attività progettuale; quando la forma dell’oggetto viene elaborata indipendentemente dalla progettazione vera e propria, si parla più propriam. di styling design.
+## Pensiero Computazionale
+il pensiero computazionale è un processo di formulazione di problemi e di soluzioni in una forma che sia eseguibile da un agente che processi informazioni.
+
+# Introduzione alle intelligenze artificiali
+## VLSI
+_**Very large scale integration**_ (in acronimo **VLSI**) è una denominazione generica che indica una elevata integrazione di transistor all'interno di un singolo chip.
+## Distanze Manhattan
+$$\textcolor{#ff82b2}{h((x,y))=MD((x,y),(x_g,y_h))=|x-x_g|+|y-y_g|}$$
+## Backtracking
+Il backtracking (in italiano, si può definire "monitoraggio a ritroso") è una **tecnica per trovare soluzioni a problemi in cui devono essere soddisfatti dei vincoli**. Questa tecnica enumera tutte le possibili soluzioni e scarta quelle che non soddisfano i vincoli.
+
 # Crittografia
 ## Crittografia
 <span style="color:#ff82b2"><b>Crittografia</b></span> significa <span style="color:#ff82b2"><i>scrittura nascosta</i></span>, ed è lo studio di tecniche matematiche sofisticate per mascherare i messaggi (crittografia) o tentare di svelarla (crittoanalisi).
