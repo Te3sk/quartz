@@ -4,6 +4,7 @@ alias:
 - 
 tags: #introAI #ML
 ---
+# Definizione
 > [!quote] Concept Learning
 > 
 > Inferire una funzione booleana da esempy di training positivi e negativi
@@ -61,7 +62,7 @@ Nella <span style="color:#ff82b2"><b>rappresentazione delle ipotesi</b></span> c
 > - $\underline{\#\text{ipotesi sintatticamente distinte(congiunzioni)}}=5\cdot4\cdot4\cdot4\cdot4\cdot4=5120$
 > - $\underline{\#\text{ipotesi semanticamente distinte}}=1+4\cdot3\cdot3\cdot3\cdot3\cdot3=973$
 
-In generale, <span style="color:#ff82b2"><i>strutturare lo spazio di ricercca</i></span> può sempre essere utile queando abbiamo grandi spazi di ricerca (anche infiniti). 
+In generale, <span style="color:#ff82b2"><i>strutturare lo spazio di ricerca</i></span> può sempre essere utile queando abbiamo grandi spazi di ricerca (anche infiniti). 
 # Ordinamento da generale a specifico
 Se consideriamo ad esempio $\textcolor{#9172dd}{2}$ ipotesi:
 $$\textcolor{#9172dd}{h_1}=<Sunny,?,?,Strong,?,?> \textcolor{#9172dd}{\to h_2}=<Sunny,?,?,?,?,?>$$
@@ -83,10 +84,10 @@ La relazione $\textcolor{#ff82b2}{\geq}$ impone un ordine parziale (<span style=
 > 1. Inizializza $\textcolor{#ff82b2}{h}$ all'ipotesi più specifica di $H$
 > 2. Per ogni istanza di training $\textcolor{#ff82b2}{x}$
 > 	```
-> 	**for each** attribute a_i in h
-> 		**if** the a_i in h is satisfied by x
-> 			**then** do nothing
-> 			**else** replace a_i in the next more general constraing that is staisfied by x
+> 	FOR EACH in h
+> 		IF the a_i in h is satisfied by x
+> 			THEN do nothing
+> 			ELSE replace a_i in the next more general constraing that is staisfied by x
 > 	```
 > 3. Output dell'ipotesi $\textcolor{#ff82b2}{h}$
 
@@ -113,11 +114,11 @@ L'idea è quella che si restituisca una <span style="color:#ff82b2"><i>descrizio
 # Rappresentare il Version Space
 > [!quote] 
 > 
-> - Il <span style="color:#ff82b2"><b>General Boundary</b></span> ($\textcolor{#ff82b2}{G}$) del version space è l'insieme dei massimi membri generali di $H$ consistente con D
-> - Il <span style="color:#ff82b2"><b>Specific Boundary</b></span> ($\textcolor{#ff82b2}{S}$) del Version Space è l'insieme dei massimi membri specifici di $H$ consistente con $D$
+> - Il <span style="color:#ff82b2"><b>General Boundary</b></span> (*confine generale*) ($\textcolor{#ff82b2}{G}$) del version space è l'insieme dei massimi membri generali di $H$ consistente con D
+> - Il <span style="color:#ff82b2"><b>Specific Boundary</b></span> (*confine specifico*) ($\textcolor{#ff82b2}{S}$) del Version Space è l'insieme dei massimi membri specifici di $H$ consistente con $D$
 > <span style="color:#ff82b2"><b><u>TEOREMA:</u></b></span> Tutti i membri del Version Space sono compresi fra questi due boundaries $$\textcolor{#ff82b2}{VS_{H,D}=\{h\in H | (\exists s \in S)(\exists g\in G)(g\geq h\geq s)\}}$$
 
-Possiamo fare una <span style="color:#ff82b2"><i>ricerca completa</i></span> di ipotesi consistenti usando in due boundaries $\textcolor{#ff82b2}{S}$ e $\textcolor{#ff82b2}{G}$ per il VS, quindi non ristretto a $\textcolor{#ff82b2}{S}$ come per `Find-S`.
+Possiamo fare una <span style="color:#ff82b2"><i>ricerca completa</i></span> di ipotesi consistenti usando in due boundaries $\textcolor{#ff82b2}{S}$ e $\textcolor{#ff82b2}{G}$ per il [[IntroAI/ML/ML_Concept_Learning#Version Space|VS]], quindi non ristretto a $\textcolor{#ff82b2}{S}$ come per [[IntroAI/ML/ML_Concept_Learning#Algoritmo Find-S|find-S]].
 # Candidate Elimination Algorithm
 |                                                                                                                                                                                                                                                                                                                                                     Esempio Positivo | Esempio Negativo                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           |
 | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------:|:------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
@@ -154,7 +155,7 @@ Gli unici esempi <span style="color:#ff82b2"><i>non ambigui</i></span> sono gli 
 > 	Ogni istanza non osservata viene classificata come positiva precisamente dalla metà delle ipotesi nel VS e negativa dall'altra metà (<span style="color:#ff82b2"><i>rejection</i></span>)
 > 	$$
 >		\begin{array}{c}
-> 			\forall \textcolor{#ff82b2}{h}\text{ consistente con } \textcolor{#ff82b2}{x_i}(test),\exists \textcolor{#ff82b2}{h}\text{ identico a } \textcolor{#ff82b2}{h}\text{ eccetto } \textcolor{#ff82b2}{h'(x_i)<>h(x_i)}
+> 			\forall\text{ }\textcolor{#ff82b2}{h}\text{ consistente con } \textcolor{#ff82b2}{x_i}\text{ }(test),\exists\text{ }\textcolor{#ff82b2}{h}\text{ identico a } \textcolor{#ff82b2}{h}\text{ eccetto } \textcolor{#ff82b2}{h'(x_i)<>h(x_i)}
 > 			\\ \\
 > 			\textcolor{#ff82b2}{h}\in VS\implies \textcolor{#ff82b2}{h'}\in VS
 > 			\\
@@ -163,7 +164,7 @@ Gli unici esempi <span style="color:#ff82b2"><i>non ambigui</i></span> sono gli 
 >	 $$
 
 ### Futilità di un Free-Biased Learner
-Un learner che non fa assunzioni sull'identità del target concept, <span style="color:#ff82b2"><i>non</i></span> ha basi razionali per <span style="color:#ff82b2"><i>classificare le istanze non viste</i></span>. Bias non fa assunzioni per efficienza, ma ne ha <span style="color:#ff82b2"><i>bisogno per generalizzarla</i></span>, ma non ci dice qual'è la migliore soluzione per generalizzare. Il <span style="color:#ff82b2"><i>problema</i></span> è caratterizzare il bias per approcci di apprendimento diversi.
+Un learner che non fa assunzioni sull'identità del concetto target, <span style="color:#ff82b2"><i>non</i></span> ha basi razionali per <span style="color:#ff82b2"><i>classificare le istanze non viste</i></span>. Bias non fa assunzioni per efficienza, ma ne ha <span style="color:#ff82b2"><i>bisogno per generalizzarla</i></span>, ma non ci dice qual'è la migliore soluzione per generalizzare. Il <span style="color:#ff82b2"><i>problema</i></span> è caratterizzare il bias per approcci di apprendimento diversi.
 > [!example]
 > 
 > ($\textcolor{#ff82b2}{TR}=$Training Set, $\textcolor{#ff82b2}{TS}=$Test Set)
@@ -202,7 +203,7 @@ $\textcolor{#ff82b2}{L(x_i,D_c)}$ denota la classificazione assegnata all'istanz
 | Memorizza gli esempi, classifica $\textcolor{#ff82b2}{x}$ sse è associato a un esempio osservato precedentemente $$\begin{array}{rcl}\begin{array}{r}osservato\\no inductive\\bias\end{array}&\Large\textcolor{#ff82b2}{\implies}&\begin{array}{l}no\\generalization\end{array}\end{array}$$ |  Bias: lo spazio delle ipotesi contiene il target concept (congiunzioni di attributi)   | Bias: lo spazio delle ipotesi contiene il concetto target e tutte le istanze negative $\textcolor{#ff82b2}{\implies}$ Abbiamo un linguaggio bias fatto di AND sui letterali più il <span style="color:#ff82b2"><i>search bias</i></span> sulle preferenze dell'ipotesi più specifica |
 
 Per superare le restrizioni congiuntive sui <span style="color:#ff82b2"><i>modelli flessibili</i></span> usiamo <span style="color:#ff82b2"><i>diversi approcci di ML:</i></span>
-- <span style="color:#ff82b2"><i>Decision Tree</i></span> (TO LINK)
+- [[IntroAI/ML/ML_DecisionTree|Decision Tree]]
 - <span style="color:#ff82b2"><i>Algoritmi Genetici</i></span> (TO LINK)
 	Si codifica ogni insieme di regole come una stringa di bit e si usa la ricerca genetica per esplorare questo $\textcolor{#ff82b2}{H}$
 - <span style="color:#ff82b2"><i>Programmazione logica induttiva</i></span> (TO LINK)

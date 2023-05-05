@@ -66,7 +66,7 @@ Lo scopo è di <span style="color:#ff82b2"><i>separare gli esempi</i></span> sul
 > 
 > | ![albero1](IntroAI/assets/pictures/ML_informationGain_exp1.png)                                                                              | ![albero1](IntroAI/assets/pictures/ML_informationGain_exp1.png) |
 | -------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------- |
-> | $$\begin{array}{l}\textcolor{#ff82b2}{Gain(S,Humidity)=}&\\\begin{array}{}\textcolor{#ff82b2}{=9.40-}\textcolor{#ff82b2}{(\frac{7}{14}).985-(\frac{7}{14}).592= \textcolor{#83ed0e}{\boxed{\textcolor{#ff82b2}{.151}}}}\end{array}\end{array}$$ | $$\begin{array}{l}\textcolor{#ff82b2}{Gain(S,Wind)=}\\\begin{array}{}\textcolor{#ff82b2}{.940-(\frac{8}{14}).811 - (\frac{6}{14})1.0=0.48}\end{array}\end{array}$$                                                               |
+> | $$\begin{array}{l}\textcolor{#ff82b2}{Gain(S,Humidity)=}&\\\begin{array}{}\textcolor{#ff82b2}{=9.40-}\textcolor{#ff82b2}{(\frac{7}{14}).985-(\frac{7}{14}).592= \textcolor{#9172dd}{\boxed{\textcolor{#ff82b2}{.151}}}}\end{array}\end{array}$$ | $$\begin{array}{l}\textcolor{#ff82b2}{Gain(S,Wind)=}\\\begin{array}{}\textcolor{#ff82b2}{.940-(\frac{8}{14}).811 - (\frac{6}{14})1.0=0.48}\end{array}\end{array}$$                                                               |
 
 #### Problemi
 Il guadagno di informazioni fornisce gli attributi con molti valori possibili. Si consideri <span style="color:#9172dd"><i>ad esempio</i></span> gli attributi $\textcolor{#ff82b2}{Date}$ nell'esempio $\textcolor{#ff82b2}{PlayTennis}$:
@@ -103,3 +103,168 @@ $\textcolor{#ff82b2}{GainRatio}$ penalizza gli attributi che separano gli esempi
 Per mitigare questo effetto viene usata la seguente <span style="color:#ff82b2"><b>euristica</b></span>:
 1. Calcolare $\textcolor{#ff82b2}{GainRatio}$ per ogni attributo
 2. Applicare $\textcolor{#ff82b2}{GainRatio}$ solo per gli attributi con $\textcolor{#ff82b2}{Gain}$ sopra la media
+# Ricerca nello spazio delle ipotesi in DT Learning
+La ricerca in *HP Space*, ricerca (con <span style="color:#ff82b2"><i>Hill-climbing</i></span>) nello spazio dei possibili DT dal più semplice fino al più complesso, riferito all'algoritmo precedente (<span style="color:#ff82b2"><i>Cand.Elimin</i></span>):
+- Lo spazio delle ipotesi è completo (rappresenta tutte le funzioni o valori discreti)
+- La ricerca mantiene una singola ipotesi alla volta
+- Non torna indietro e non garantisce l'ottimalità
+- Usa tutti gli esempi disponibili
+- Può terminare prima
+- Accetta classi disturbate
+## Bias induttivo in DT learing
+$$
+\textcolor{#ff82b2}{\text{"Shortest trees are prefered over longer trees"}}
+$$
+Grazie alla ricerca dal semplice al complesso, incrementale. Inoltre questo è il *bias* esibito da un semplice *breadh first* che genera tutto il DT e seleziona quello consistente più corto.
+$$
+\textcolor{#ff82b2}{\text{"Preferes trees that place high information gain attributes close to the root"}}
+$$
+I DT sono limitati dal rappresentare tutte le informazioni possibili, la <span style="color:#ff82b2"><i>restrizione</i></span> non è sull'ipotesu ma sulla <span style="color:#ff82b2"><i>strategia di ricerca</i></span>.
+### 2 tipi di Bias
+| Preferenza o <span style="color:#ff82b2"><b>search bias</b></span> (dato dalla strategia di ricerca) | Restrizione o <span style="color:#ff82b2"><b>lenguage bases</b></span> |
+| ----------------------------------------------------------------------------------------------------: | :---------------------------------------------------------------------- |
+| ID3 cerca uno spazio delle ipotesi completo, la strategia di ricerca è incompleta                    | Si fa la ricerca del tipo <span style="color:#ff82b2"><b>candidate-elimination</b></span> che cerca uno <span style="color:#ff82b2"><i>spazio delle ipotesi incompleto</i></span>. La strategia è completa                                                                      |
+
+Nell'apprendimento di un modello lineare si usa una <span style="color:#ff82b2"><i>combinazione di bias</i></span>.
+
+$$
+\begin{array}{r}
+	\text{Il search bias è}\\
+	\text{preferibilmente al}\\
+	\text{lenguage bias}&
+\end{array}
+\cases{
+	\begin{array}{ll}
+		&\text{Nel ML si usano tipicamente}\\
+		&\text{\textcolor{#ff82b2}{approcci flessibili} (capability universale)}\\
+		&\text{dei modelli), senza escludere a priori}\\
+		&\text{la funzione target sconosciuta}
+	\end{array}
+	\\ \\
+	\begin{array}{lr}
+		&\text{Flessibilità}\textcolor{#ff82b2}{\to}\text{tener cura dei propri problemi}\\
+		&\text{di overfitting}
+	\end{array}
+}
+$$
+### Ockham's Razor Prefer shorter hypoteses
+- <span style="color:#ff82b2"><i>Controllo della complessità del modello</i></span> dalla regoralizzazioene dei sistemi lineari
+- Nel ML è importante <span style="color:#ff82b2"><b>razionalizzare</b></span> il modello alla fine
+# Problemi nell'apprendimento dei DT
+<span style="color:#ff82b2"><b>Overfitting:</b></span>
+- interrompere presto
+- ridurre gli errori di pruning
+- regole post-pruning
+<span style="color:#ff82b2"><b>Extensions:</b></span>
+- misure alternative per selezionare gli attributi
+- attributi continuamente valutati
+- gestione degli esempi con valorre degli attributi mancanti
+- gestione degli attributi con costi differenti
+- miglirare l'efficienza di computazione
+## Overfitting
+### Definition
+Costruire alberi che <span style="color:#ff82b2"><i>"</i></span>si adattano troppo<span style="color:#ff82b2"><i>"</i></span> agli esempi di training può portare a <span style="color:#ff82b2"><b>overfitting</b></span>. Consideriamo l'errore dell'ipotesi $\textcolor{#ff82b2}{h}$ su i dati di training ($\textcolor{#ff82b2}{error_D(h)}$) e sull'intera distribuzione $\textcolor{#ff82b2}{X}$ di dati ($\textcolor{#ff82b2}{error_X(h)}$).
+> [!quote] Overfitting
+> 
+> L'ipotesi $\textcolor{#ff82b2}{h}$ fa <span style="color:#ff82b2"><b>overfitting</b></span> sui dati di training se esiste un'ipotesi $\textcolor{#ff82b2}{h'\in H}$ t.c.
+> $$
+> \begin{array}{c}
+> 	\textcolor{#ff82b2}{error_D(h)<error_D(h')}\\
+> 	\textcolor{#fc0202}{AND}\\
+> 	\textcolor{#ff82b2}{error_X(h)<error_X(h')}\\
+> \end{array}
+> $$
+> Quindi $\textcolor{#ff82b2}{h'}$ si comporta peggio sui dati di training, ma meglio sui dati sconosciuti
+
+Gli approcci flessibili possono facilmente andare in contro a overfitting se non usati con particolare cura
+
+> image pag.28 of 3.4
+
+> [!example]
+> 
+> [image pag.29 of 3.4]
+> Immaginiamo che questo esempio disturbato causi la divisione del secondo nodo foglia: il DT cresce come la sua complessità
+
+### Evitare l'overfit nei DT
+Ci sono 2 strategie:
+1. Fermare presto la crescita dell'albero, prima della classificazione perfetta
+2. Permettere che l'albero faccia overfit sui dati, poi fare *post-prune*
+Valutazione degli effetti:
+|                                                                           Training & validation set | Altri approcci                                                                                                            |
+| ---------------------------------------------------------------------------------------------------:|:------------------------------------------------------------------------------------------------------------------------- |
+| Divide il training set in due (training & validation) e usa il secondo per valutare i punti 1. e 2. | Si usa un test statisstico per stimare gli effetti di espansione / pruning, oppure *minimum description lenght principle* |
+
+### Pruning a errore ridotto
+- <span style="color:#ff82b2"><i>Ogni nodo è candidato</i></span> per il pruning
+- Il pruning consiste nel <span style="color:#ff82b2"><b>rimuovere sottoalberi</b></span> radicati in un nodo: il nodo diventa una foglia ed è assegnato al classificatore più comune
+- Il nodo viene <span style="color:#ff82b2"><i>rimosso</i></span> solo <span style="color:#ff82b2"><i>se l'albero risultante non performa peggio</i></span> sul validation set
+- I nodi vengono <span style="color:#ff82b2"><i>potati iterativamente</i></span>: a ogni iterazione il nodo la cui rimozione incrementa di più l'accuratezza sul validation set viene potato
+- Il pruning si ferma quando nessun pruning incrementa l'accuratezza
+<span style="color:#ff82b2"><i>Effetti del pruning a errore ridotto:</i></span>
+> image pag.32 of 3.4
+
+#### Regole post-pruning
+1. Creare il DT dal training set
+2. Convertire il DT in un insieme di regole equivalenti
+	- Ogni <span style="color:#ff82b2"><i>path</i></span> corrisponde a una <span style="color:#ff82b2"><i>regola</i></span>
+	- Ogni <span style="color:#ff82b2"><i>nodo</i></span> lungo il path corrisponde a una <span style="color:#ff82b2"><i>pre-condizione</i></span>
+	- Ogni <span style="color:#ff82b2"><i>classificazione di foglia</i></span> corrisponde a una <span style="color:#ff82b2"><i>post-condizione</i></span>
+$$
+\textcolor{#9172dd}{(Outlook=Sunny)\wedge(Humidity=High)\implies(PlayTennis=No)}
+$$
+3. Potare (generalizzare) ogni regola rimuovendo le precondizioni che non miglirano l'accuratezza
+4. Ordinare le regole nell'<span style="color:#ff82b2"><i>ordine dell'accuratezza stimata</i></span>, e considerarle <span style="color:#ff82b2"><i>in sequenza</i></span> quando si classificano nuove istanze
+#### Perché si convertono in regole
+Dove un attributo continuo $\textcolor{#ff82b2}{A}$, crea dinamicamente un <span style="color:#ff82b2"><i>nuovo attributo</i></span> $\textcolor{#ff82b2}{A_c}$
+$$
+\textcolor{#ff82b2}{A_c=true\text{ if }A<c, false\text{ otherwise}}
+$$
+Come si determina il <span style="color:#ff82b2"><i>valore soglia</i></span> $\textcolor{#ff82b2}{c}$? (<span style="color:#9172dd"><b>Esempio:</b></span> $\textcolor{#ff82b2}{Temperature}$ nell'esempio $\textcolor{#ff82b2}{PlayTennis}$)
+- Si ordinano gli esempi secondo $\textcolor{#ff82b2}{Temperature}$
+$$
+\textcolor{#9172dd}{
+	\begin{array}{rcc|c|c|c|c|c|c|c|c}
+		\textcolor{#ffffff}{Temperature} 
+			&& \textcolor{#ffffff}{40} 
+			& \textcolor{#ffffff}{48}
+			&& \textcolor{#ffffff}{60}
+			& \textcolor{#ffffff}{72}
+			& \textcolor{#ffffff}{80}
+			&& \textcolor{#ffffff}{90}
+		\\
+		\textcolor{#ffffff}{PlayTennis}
+			&& \textcolor{#ffffff}{No}
+			& \textcolor{#ffffff}{No}
+			&& \textcolor{#ffffff}{Yes}
+			& \textcolor{#ffffff}{Yes}
+			& \textcolor{#ffffff}{Yes}
+			&& \textcolor{#ffffff}{No}
+	\end{array}
+}
+$$
+- Si determinano le soglie dei candidati <span style="color:#ff82b2"><i>facendo la media</i></span> dei valori consegutivi che sono in classifica di cambiamento
+$$
+\begin{array}{ccc}
+	{\Large\frac{48+60}{2}}=54
+	&&
+	{\Large\frac{80+90}{2}=85}
+\end{array}
+$$
+- Si valuta <span style="color:#ff82b2"><i>la soglia dei candidati</i></span> (attributi) secondo il guadagno di informazioni <span style="color:#9172dd"><i>(</i></span> Miglior $\textcolor{#ff82b2}{temperature>54}$ <span style="color:#9172dd"><i>)</i></span>. Ora il nuovo attributo compete con gli altri
+## Gestire i dati di training incompleti (imputation)
+1. (<span style="color:#ff82b2"><i>più comune</i></span>) Assegnare il valore più in comune tra tutti i dati di training negli esempi al nodo o nella stessa classe
+2. Assegnare una probabilità $\textcolor{#ff82b2}{p_i}$ a ogni valore $\textcolor{#ff82b2}{v_i}$, basata sulla frequenza, e assegnare i valori agli attributi mancanti, secondo questa distribuzione di pobabilità (si aggiungono più esempi pesati con la probabilità) $\stackrel{quindi}{\to}$ Si assegna una <span style="color:#ff82b2"><i>frazione</i></span> $\textcolor{#ff82b2}{p_i}$ dell'esempio ad ogni albero discendente
+3. Classificare il nuovo esempio allo stesso modo (pesandolo): Viene scelta la <span style="color:#ff82b2"><i>classificazione più probabile</i></span>
+## Gestire attributi con costi differenti
+Gli attributi dell'istanza possono avere un <span style="color:#ff82b2"><i>costo associato</i></span>: prefiamo i DT chge usano attributi a <span style="color:#ff82b2"><b>basso costo</b></span>. ID3 può essere modificato per <span style="color:#ff82b2"><i>tenere conto del costo</i></span>:
+1. Tan & Schlimmer (1990): $\textcolor{#ff82b2}{{\Large\frac{Gain^2(S,A)}{Cost(A)}}}$
+2. Numez (1988): $\textcolor{#ff82b2}{{\Large\frac{2^{Gain(S,A)-1}}{(Cost(A)+1)^w}}}\text{ con }\textcolor{#ff82b2}{w\in[0,1]}$
+> image pag.40 of 3.4
+# Conclusione
+- I DT sono un approccio popolare per la <span style="color:#ff82b2"><i>classificazione</i></span> in un discreto numero di classi
+	- <span style="color:#ff82b2"><i>Spazio delle ipotesi espressivo</i></span> nell'area delle preposizione (approccio <span style="color:#ff82b2"><i>rule-based</i></span>)
+	- Robusti sui dati disturbati
+	- <span style="color:#ff82b2"><i>facile da capire</i></span> (regole $\textcolor{#ff82b2}{if-then}$ esplicite)
+	- Molte estensioni allo schema base
+- <span style="color:#ff82b2"><b>Language</b></span> e <span style="color:#ff82b2"><b>search bias</b></span>: ID3 crea uno spazio delle ipotesi completo, con strategia greedy incompleta
+- <span style="color:#ff82b2"><b>Approccio flessibile</b></span>: L'overfitting è un problema importante trovato con <span style="color:#ff82b2"><i>early stopping</i></span>, <span style="color:#ff82b2"><i>post-pruning</i></span> e <span style="color:#ff82b2"><i>generalizzazione</i></span> delle regole indotte

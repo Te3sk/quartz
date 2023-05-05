@@ -29,7 +29,7 @@ tags:
 
 Caso invariato, semplice regressione lineare, partiamo da una variabile in input e una in output. Adattiamo i dati con una <span style="color:#ff82b2"><i>retta</i></span>.
 ## Task e Modelli
-Proviamo quindi a trovare una $\textcolor{#ff82b2}{h}\text{ }{\Large (}\stackrel{\large modello}{lineare}{\Large )}$ che faccia il miglior fitting di dati, avendo un insieme di dati di valori $\textcolor{#ff82b2}{x}$ e $\textcolor{#ff82b2}{g}$. Assumiamo che le variabili $\textcolor{#ff82b2}{x}$ e $\textcolor{#ff82b2}{y}$ siano collegate da $\textcolor{#ff82b2}{y = w_1 x + w_0 + noise}$, dove $\textcolor{#ff82b2}{w}$ è un parametro libero e $\textcolor{#ff82b2}{noise}$ è l'errore nella misurazione dei targets.
+Proviamo quindi a trovare una $\textcolor{#ff82b2}{h}\text{ }{\Large (}\stackrel{\large modello}{lineare}{\Large )}$ che faccia il miglior [[Glossary#Fitting|fitting]] di dati, avendo un insieme di dati di valori $\textcolor{#ff82b2}{x}$ e $\textcolor{#ff82b2}{g}$. Assumiamo che le variabili $\textcolor{#ff82b2}{x}$ e $\textcolor{#ff82b2}{y}$ siano collegate da $\textcolor{#ff82b2}{y = w_1 x + w_0 + noise}$, dove $\textcolor{#ff82b2}{w}$ è un parametro libero e $\textcolor{#ff82b2}{noise}$ è l'errore nella misurazione dei targets.
 Proviamo quindi a <span style="color:#ff82b2"><i>trovare i valori di</i></span> $\textcolor{#ff82b2}{w}$ per costruire un modello che faccia <span style="color:#ff82b2"><i>predire</i></span>/<span style="color:#ff82b2"><i>stimare</i></span> $\textcolor{#ff82b2}{y}$ per i valori di $\textcolor{#ff82b2}{x}$ non noti.
 ## Apprendimento via LMS
 > [!summaries] Premesse
@@ -65,12 +65,12 @@ $$
 \end{array}
 $$
 Dove $\textcolor{#ff82b2}{x_p}$ è il $p$-esimo input, $\textcolor{#ff82b2}{y_p}$ è l'output per $p$, $\textcolor{#ff82b2}{w}$ sono i parametri liberi e $\textcolor{#ff82b2}{l}$ il numero di esempi.
-### Perché usarlo
+### Perché usarlo - Least Squares
 ![Grafico](IntroAI/assets/pictures/ML_whyLMS.png)
 Linee <span style="color:#ff82b2"><b>blu</b></span> hanno diverse linee <span style="color:#33b85d"><b>verdi</b></span>. Minimizzare le linee <span style="color:#33b85d"><b>verdi</b></span> è un modo per trovare la migliore approssimazione/fitting dei dati. L'**errore quadratico** $\textcolor{#ff82b2}{E(w)}$ quantifica le linee verdi
 $$
 \textcolor{#ff82b2}{
-	E(w)=\sum^p_{p=1}(y_p-h_w(x_p))^2
+	E(w)=\sum^l_{p=1}(y_p-h_w(x_p))^2
 }
 $$
 Il metodo <span style="color:#ff82b2"><b>least squares</b></span> è un approccio standard per approssimare la soluzione di un sistema sopra-stimato, quindi un insieme di equazioni dove ci sono più equazioni conosciute che non.
@@ -137,7 +137,7 @@ La derivazione precedente, suggerisce di costruire un <span style="color:#ff82b2
 > 
 > Possiamo muoverci verso il minimo con un gradiente decrescente ($\textcolor{#ff82b2}{\Delta w=\underline{-\text{gradiente di }E(w)}}$)
 
-<span style="color:#ff82b2"><b>Local Search:</b></span> so comincia da un vettore di pesi iniziale, poi si modifica iterativamente per decrementare e minimizzare l'errore delle funzioni
+<span style="color:#ff82b2"><b>Local Search:</b></span> si comincia da un vettore di pesi iniziale, poi si modifica iterativamente per decrementare e minimizzare l'errore delle funzioni
 > [!nb]
 > 
 > $$
@@ -167,7 +167,7 @@ $$
 > 	- $if(\text{input }\textcolor{#ff82b2}{x>0)\Delta w_1}$ negativo $\to$ riduci $\textcolor{#ff82b2}{w_1}$ ($else$ incrementalo)
 
 Miglioriamo l'apprendimento dagli errori precedenti.
-L'approccio del gradiente decrescente è un approccio di `local search` semplice ed efficace per le soluzioni LMS. Ci permette di cercare in <span style="color:#ff82b2"><i>spazi delle ipotesi infiniti</i></span> e può sempre essere applicato per $\textcolor{#ff82b2}{H}$ <span style="color:#ff82b2"><i>continuo</i></span> e perdite differenziali. Per renderlo più efficiente ci sono miglioramenti possibili.
+L'approccio del gradiente decrescente è un approccio di [[IntroAI/ML/ML_LinearModels#Local Search|local search]] semplice ed efficace per le soluzioni LMS. Ci permette di cercare in <span style="color:#ff82b2"><i>spazi delle ipotesi infiniti</i></span> e può sempre essere applicato per $\textcolor{#ff82b2}{H}$ <span style="color:#ff82b2"><i>continuo</i></span> e perdite differenziali. Per renderlo più efficiente ci sono miglioramenti possibili.
 # Linear models
 > [!quote] Riassunto per $l$ patterns $\textcolor{#ff82b2}{(x_p, y_p)}$
 > 
@@ -331,7 +331,8 @@ Avendo funzioni di base lungo ogni dimensione di uno spazio di input a $\textcol
 - <span style="color:#ff82b2"><i>Phi</i></span> è fixato prima di osservare i dati di training
 Quando dovremmo vedere come possiamo uscire con funzioni con <span style="color:#ff82b2"><i>basi basse</i></span>, scegliendole usando i dati di training: <span style="color:#ff82b2"><i>phi</i></span> dipende da $\textcolor{#ff82b2}{w}$ e il modello è non lineare nei parametri.
 In altri modelli la computazione del nuovo spazio è fatto implicitamente attraverso il nucleo delle funzioni e controllando la complessità del modello.
-## Classificazione dei modelli lineari
+## Classificazione
+### Classificazione dei modelli lineari
 Lo stesso modello usato per la regressione, può essere usato per la <span style="color:#ff82b2"><i>classificazione</i></span> (<span style="color:#ff82b2"><b>target concept</b></span>). In questo caso usiamo un <span style="color:#ff82b2"><b>hyperplane</b></span> ($\textcolor{#ff82b2}{wx}$) assumendo valori possibili e negativi. Sfruttiamo questi modelli per <span style="color:#ff82b2"><i>decidere se un</i></span> $\textcolor{#ff82b2}{x}$ <span style="color:#ff82b2"><i>appartiene alla zona</i></span> più o meno dell'<span style="color:#ff82b2"><i>hyperplane</i></span>. Vogliamo quindi imporre $\textcolor{#ff82b2}{x}$ (con l'apprendimento) t.c. abbiamo una buona accuratezza nella classificazione.
 ![grafico](IntroAI/assets/pictures/ML_hyperplane.png)
 $$
@@ -481,7 +482,7 @@ Se <span style="color:#ff82b2"><b>mal classificato</b></span> (perché il target
 ### Limitazioni
 In geometria, 2 insiemi di punti in un graico a 2 dimensioni è <span style="color:#ff82b2"><b>linearmente separabile</b></span> quando i 2 insiemi possono essere completamente separati da una singola retta.
 ![grafico](IntroAI/assets/pictures/ML_SeparableSet.png)
-In generale, 2 gruppo sono linearmente separabili in $\textcolor{#ff82b2}{n}$<span style="color:#ff82b2"><i>-dimensioni</i></span> se possono essere separati da un <span style="color:#ff82b2"><b>iperpiano</b> <i>a</i></span> $\textcolor{#ff82b2}{(n-1)}$ <span style="color:#ff82b2"><i>dimensioni</i></span>.
+In generale, 2 gruppi sono linearmente separabili in $\textcolor{#ff82b2}{n}$<span style="color:#ff82b2"><i>-dimensioni</i></span> se possono essere separati da un <span style="color:#ff82b2"><b>iperpiano</b> <i>a</i></span> $\textcolor{#ff82b2}{(n-1)}$ <span style="color:#ff82b2"><i>dimensioni</i></span>.
 Il <span style="color:#ff82b2"><b>linear decision boundary</b></span> può fornire soluzioni esatte solo per insiemi di punti linearmente separabili.
 > [!example]
 

@@ -16,12 +16,38 @@ tags: #introai
 - <span style="color:#ff82b2"><b>Parte 2:</b></span> Rappresentazione della conoscenza e ragionamento
 - <span style="color:#ff82b2"><b>Parte 3:</b></span> Introduzione all'apprendimento automatico
 # Arguments
+## Risoluzione dei problemi come ricerca
 1. [[IntroAI/Agents|Agenti]]
 2. [[IntroAI/Environments|Ambienti]]
 3. [[IntroAI/Problem Solving|Problem Solving]]
 4. [[IntroAI/InfoSearch|InfoSearch]]
 5. [[IntroAI/OltreLaRicercaClassica|Oltre la Ricerca classica]]
-6. 
+## Machine Learning
+1. [[IntroAI/assets/pictures/ML_informationGain_exp2.png|Introduzione]]
+	1. [[IntroAI/ML/ML_introduction#Struttura di un sistema di ML|Struttura di un sistema di ML]]
+	2. [[IntroAI/ML/ML_introduction#Supervised Learning|Supervised Learning]]
+	3. [[IntroAI/ML/ML_introduction#Modelli|Modelli]]
+	4. [[IntroAI/ML/ML_introduction#Generalizzazione|Generalizzazione]]
+2. [[IntroAI/ML/ML_Concept_Learning|Concept Learning]]
+	1. [[IntroAI/ML/ML_Concept_Learning#Rappresentare le ipotesi|Rappresentare le ipotesi]]
+	2. [[IntroAI/ML/ML_Concept_Learning#Algoritmo Find-S|Find-S]]
+	3. [[IntroAI/ML/ML_Concept_Learning#Version Space|Version Space]]
+	4. [[IntroAI/ML/ML_Concept_Learning#Candidate Elimination Algorithm|Candidate Elimination]]
+3. [[IntroAI/ML/ML_LinearModels|Linear Models]]
+	1. [[IntroAI/ML/ML_LinearModels#Regressione|Regressione]]
+	2. [[IntroAI/ML/ML_LinearModels#Calcolo del gradiente|Gradiente]]
+	3. [[IntroAI/ML/ML_LinearModels#Regolarizzazione|Regolarizzazione]]
+	4. [[IntroAI/ML/ML_LinearModels#Classificazione|Classificazione]]
+4. [[IntroAI/ML/ML_DecisionTree|Decision Tree]]
+	1. [[IntroAI/ML/ML_DecisionTree#Ricerca nello spazio delle ipotesi in DT Learning|Ricerca nello spazio delle ipotesi in DT Learning]]
+	2. [[IntroAI/ML/ML_DecisionTree#Ricerca nello spazio delle ipotesi in DT Learning|Ricerca nello spazio delle ipotesi in DT Learning]]
+5. [[IntroAI/ML/ML_SVM|Support Vector Machine - SVM]]
+	1. [[IntroAI/ML/ML_SVM#1. Margin Example|Margin]]
+	2. [[IntroAI/ML/ML_SVM#Kernel|Kernel]]
+	3. [[IntroAI/ML/ML_SVM#2. Pratica - evitare misinterpretazioni|Pratica - evitare misinterpretazioni]]
+6. [[IntroAI/ML/ML_ValidSLT|Validazione con Statistical Learning Theory]]
+	1. [[IntroAI/ML/ML_ValidSLT#Resistenza|Resistenza]]
+	2. [[IntroAI/ML/ML_ValidSLT#Vapnik-Chervonenkis-dim e SLT - una teoria generale|VC-dim]]
 # Slides
 ## Parte 1: Risoluzione dei problemi come ricerca
 1. [Introduzione](https://drive.google.com/file/d/1E6wrMriToyPUiR6eiau2oZmmMZLQYGU9/view?usp=sharing)
@@ -38,16 +64,24 @@ tags: #introai
 1. [Agenti Basati su Conoscenza](https://drive.google.com/file/d/1EQDiHAKjv98HASY8NTScgNJYcKO1Pcun/view?usp=sharing)
 2. [PROP - Model Checking, Algoritmo SAT, risoluzione](https://drive.google.com/file/d/1EQwgxQGz01CTt05Il6L4R0pH9HdFgGD0/view?usp=share_link)
 3. [Agenti Logici: la logica del prim'ordine](https://drive.google.com/file/d/1I4QvWgWOxMOKxfAlkAqZSSy76u3W8Zd7/view?usp=share_link)
+4. [Agenti Logici: Fol, Sistemi a regole](https://drive.google.com/file/d/17E_AUqA8BnugvZgiiRgTvdCfSsub8wDZ/view?usp=sharing)
 ### Machine Learning
-1. [[IntroAI/ML/ML_introduction|Introduzione]]
-2. Spazio delle ipotesi discreto rule-based
+1. [Introduzione](https://drive.google.com/file/d/19YpLB8tKw25ZI4euJajCXqM8lZgRPId1/view?usp=sharing)
+2. [Concept Learning](https://drive.google.com/file/d/1zJ6ji0MnVvm4LsOeRMC5EJoJtXuWr3hg/view?usp=sharing)
+3. [Linear Models](https://drive.google.com/file/d/1MmP3iXMlkp8Vq45J1lPtP_ARMVq1ULbQ/view?usp=sharing)
+4. [Decision Tree](https://drive.google.com/file/d/13kXJTfdAIWUe6QPGUPEJK8U8ws1s3rep/view?usp=sharing)
+5. [SVM](https://drive.google.com/file/d/1BzxnOwFIjfvJhVSYMmD6kqksINgWmoSR/view?usp=sharing)
+6. [Validazione SLT](https://drive.google.com/file/d/1zz6SkibxIm6xbZd0FHiRvAm4iqapHFMh/view?usp=sharing)
+
+7. [[IntroAI/ML/ML_introduction|Introduzione]]
+8. Spazio delle ipotesi discreto rule-based
 	1. [[IntroAI/ML/ML_Concept_Learning|concept learning]]
 	2. decision trees
-3. Spazio delle ipotesi continuamente parametrizzato
+9. Spazio delle ipotesi continuamente parametrizzato
 	1. Linear Models
 	2. SVM
-4. Altri modelli
-5. Applicazioni
+10. Altri modelli
+11. Applicazioni
 # Lessons
 1. [[IntroAI/inClassNotes/01Gen26|26 Gennaio 2023]]
 2. [[IntroAI/inClassNotes/01gen31|31 Gennaio 2023]]

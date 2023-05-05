@@ -19,6 +19,16 @@ _**Very large scale integration**_ (in acronimo **VLSI**) è una denominazione
 $$\textcolor{#ff82b2}{h((x,y))=MD((x,y),(x_g,y_h))=|x-x_g|+|y-y_g|}$$
 ## Backtracking
 Il backtracking (in italiano, si può definire "monitoraggio a ritroso") è una **tecnica per trovare soluzioni a problemi in cui devono essere soddisfatti dei vincoli**. Questa tecnica enumera tutte le possibili soluzioni e scarta quelle che non soddisfano i vincoli.
+## Training Examples
+un esempio della forma $\textcolor{#ff82b2}{(x, f(x) + noise)}$ dove $\textcolor{#ff82b2}{x}$ di solito è un <span style="color:#ff82b2"><i>vettore di caratteristiche</i></span> e $\textcolor{#ff82b2}{f(x)+noise}$ è detto <span style="color:#ff82b2"><i>target value</i></span>
+## Target function
+la vera funzione $\textcolor{#ff82b2}{f}$
+## Ipotesi
+Una funzione $\textcolor{#ff82b2}{h}$ proposta che si crede essere <span style="color:#ff82b2"><i>simile a</i></span> $\textcolor{#ff82b2}{f}$. Un'espressione in un dato linguaggio che descriva la relazione tra i dati
+## Spazio delle ipotesi
+$\textcolor{#ff82b2}{H}$: lo spazio di tutte le ipotesi che possono essere l'output dell'algoritmo di apprendimento
+## Fitting
+cercare di trovare la curva che minimizza il discostamento verticale (cioè rispetto all'asse y) di un punto dalla curva
 
 # Crittografia
 ## Crittografia
