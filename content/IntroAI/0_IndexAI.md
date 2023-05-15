@@ -22,6 +22,7 @@ tags: #introai
 3. [[IntroAI/Problem Solving|Problem Solving]]
 4. [[IntroAI/InfoSearch|InfoSearch]]
 5. [[IntroAI/OltreLaRicercaClassica|Oltre la Ricerca classica]]
+6. [[IntroAI/Algorithms|elenco algoritmi]]
 ## Machine Learning
 1. [[IntroAI/assets/pictures/ML_informationGain_exp2.png|Introduzione]]
 	1. [[IntroAI/ML/ML_introduction#Struttura di un sistema di ML|Struttura di un sistema di ML]]

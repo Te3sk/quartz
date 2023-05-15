@@ -93,7 +93,7 @@ La frontiera è implementata come una coda con operazioni:
 - `Inserisci(elemento, coda)`
 - Diversi tipi di coda hanno diverse funzioni di inserimento e implementano <span style="color:#ff82b2"><i>strategie</i></span> diverse.
 # Tipi di strategie
-- <span style="color:#ff82b2"><b>FIFO - First In First Out</b></span> $\rightarrow$ BF (Breadth-first)
+		- <span style="color:#ff82b2"><b>FIFO - First In First Out</b></span> $\rightarrow$ BF (Breadth-first)
 	Viene estratto l'elemento più vecchio (in attesa di più tempo); i nuovi nodi sono aggiunti alla fine.
 - <span style="color:#ff82b2"><b>LIFO - Last In First Out</b></span> $\rightarrow$ DF (Depth-first)
 	Viene estratto il più recentemente inserito; i nuovi nodi sono inseriti all'inizio (pila)

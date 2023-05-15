@@ -193,7 +193,7 @@ $$
 	\end{array}
 }
 $$
-Usando LBE $\phi(x)$ invece di $x$ per trattare con task non lineari riferito agli input. Comunque sappiamo che usando uno <span style="color:#ff82b2"><i>spazio delle caratteristiche di grandi dimensioni</i></span> può essere <span style="color:#ff82b2"><i>computazionalmente irrealizzabile</i></span> e più importante può essere <span style="color:#ff82b2"><i>facilmente portata a overfitting</i></span> senza controllarne le dimensioni dello spazio e la complessità del classificatore:
+Usando [[IntroAI/ML/ML_LinearModels#Generalizzazione - LBE|LBE]] $\phi(x)$ invece di $x$ per trattare con task non lineari riferito agli input. Comunque sappiamo che usando uno <span style="color:#ff82b2"><i>spazio delle caratteristiche di grandi dimensioni</i></span> può essere <span style="color:#ff82b2"><i>computazionalmente irrealizzabile</i></span> e più importante può essere <span style="color:#ff82b2"><i>facilmente portata a overfitting</i></span> senza controllarne le dimensioni dello spazio e la complessità del classificatore:
 $$
 \textcolor{#ff82b2}{
 	h_w(x)=sign(\sum_kw_k\phi_k(x))

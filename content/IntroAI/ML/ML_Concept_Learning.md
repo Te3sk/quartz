@@ -84,7 +84,7 @@ La relazione $\textcolor{#ff82b2}{\geq}$ impone un ordine parziale (<span style=
 > 1. Inizializza $\textcolor{#ff82b2}{h}$ all'ipotesi più specifica di $H$
 > 2. Per ogni istanza di training $\textcolor{#ff82b2}{x}$
 > 	```
-> 	FOR EACH in h
+> 	FOR EACH x in h
 > 		IF the a_i in h is satisfied by x
 > 			THEN do nothing
 > 			ELSE replace a_i in the next more general constraing that is staisfied by x

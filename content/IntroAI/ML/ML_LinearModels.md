@@ -1,6 +1,9 @@
 ---
 title: ML - Modelli Lineari
 alias:
+- Linear Models
+- Modelli Lineari
+- Lineare
 - 
 tags: 
 - #introai
@@ -320,10 +323,10 @@ L'<span style="color:#ff82b2"><i>effetto</i></span> è la decadenza del peso $\i
 
 ### Considerazioni
 #### Applicabilità generale
-Ad esempio possiamo controllare la complessità del modello usando solo $\textcolor{#2e80f2}{\lambda}$, senza sapere $\textcolor{#ff82b2}{M}$ o quando non conosciamo il modello.
+Ad esempio possiamo controllare la complessità del modello usando solo $\textcolor{#2e80f2}{\lambda}$, senza sapere $\textcolor{#ff82b2}{M}$ (grado dell'LBE) o quando non conosciamo il modello.
 #### Notare il <span style="color:#ff82b2"><b>BILANCIAMENTO</b></span> (trade-off) tra i due termini
 - Vogliamo controllare la complessità del modello per controllare l'<span style="color:#ff82b2"><i>overfitting</i></span> $\to$ introduciamo un secondo termine nella minimizzazione
-- Possiamo eccedere perché troppo peso sul secondo termine porta il focus della minimizzazioen solo (o per la maggio parte) sulla <span style="color:#ff82b2"><b>regolarizzazione</b></span> $\to$ l'errore dei dati può crescere troppo $\to$ <span style="color:#ff82b2"><i>underfitting</i></span>
+- Possiamo eccedere perché troppo peso sul secondo termine porta il focus della minimizzazione solo (o per la maggio parte) sulla <span style="color:#ff82b2"><b>regolarizzazione</b></span> $\to$ l'errore dei dati può crescere troppo $\to$ <span style="color:#ff82b2"><i>underfitting</i></span>
 - Il trade-off è rimosso dal valore di $\textcolor{#2e80f2}{\lambda}$
 ## Limitazioni delle funzioni a base fissa
 Avendo funzioni di base lungo ogni dimensione di uno spazio di input a $\textcolor{#ff82b2}{D}$ dimensioni ($\textcolor{#ff82b2}{k}$ per LBE), si richiede un <span style="color:#ff82b2"><i>numero combinatorio di funioni</i></span>
@@ -485,12 +488,12 @@ In geometria, 2 insiemi di punti in un graico a 2 dimensioni è <span style="col
 In generale, 2 gruppi sono linearmente separabili in $\textcolor{#ff82b2}{n}$<span style="color:#ff82b2"><i>-dimensioni</i></span> se possono essere separati da un <span style="color:#ff82b2"><b>iperpiano</b> <i>a</i></span> $\textcolor{#ff82b2}{(n-1)}$ <span style="color:#ff82b2"><i>dimensioni</i></span>.
 Il <span style="color:#ff82b2"><b>linear decision boundary</b></span> può fornire soluzioni esatte solo per insiemi di punti linearmente separabili.
 > [!example]
-
-
-| decision boundary <span style="color:#ff82b2"><b>non lineare</b></span> (da un'<span style="color:#ff82b2"><i>espansione di base</i></span>) | decision boundary <span style="color:#ff82b2"><b>non lineare</b></span> (da un'<span style="color:#ff82b2"><i>espansione di base</i></span>) <span style="color:#ff82b2"><b>regolarizzato</b></span> |
-| -------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| ![grafico](IntroAI/assets/pictures/ML_nonLinearDecisionBound_Exp1.png)                                                                       | ![grafico](IntroAI/assets/pictures/ML_nonLinearDecisionBound_Exp2.png)                                                                                                                               |
-| Otteniamo un classificatore <span style="color:#ff82b2"><b>non smooth</b></span> che può aver bisogno di regolarizzazione                    | In questo caso un errore di training ($\textcolor{#ff6600}{+}$) è ammesso                                                                                                                                                                                                    |
+> 
+> 
+> | decision boundary <span style="color:#ff82b2"><b>non lineare</b></span> (da un'<span style="color:#ff82b2"><i>espansione di base</i></span>) | decision boundary <span style="color:#ff82b2"><b>non lineare</b></span> (da un'<span style="color:#ff82b2"><i>espansione di base</i></span>) <span style="color:#ff82b2"><b>regolarizzato</b></span> |
+> | -------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+> | ![grafico](IntroAI/assets/pictures/ML_nonLinearDecisionBound_Exp1.png)                                                                       | ![grafico](IntroAI/assets/pictures/ML_nonLinearDecisionBound_Exp2.png)                                                                                                                               |
+> | Otteniamo un classificatore <span style="color:#ff82b2"><b>non smooth</b></span> che può aver bisogno di regolarizzazione                    | In questo caso un errore di training ($\textcolor{#ff6600}{+}$) è ammesso                                                                                                                                                                                                    |
 
 ## Altri modelli di apprendimento per la classificazione
 - <span style="color:#ff82b2"><b>Linear Discriminant Analysis</b></span> (anche multi-class)

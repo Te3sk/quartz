@@ -27,7 +27,7 @@ ID3 (X, T, Attrs)
 			aggiungi un nuovo ramo sotto Root, per testare a = v_i
 			X_i <-- sottoinsieme di X con A = k
 			IF X_i è vuoto THEN aggiungi una nuova fogli acon la classe più comune di T in X
-			ELSE aggiungi il sottoalbero generato da IB3(X_i, T, Attrs - {A})
+			ELSE aggiungi il sottoalbero generato da ID3(X_i, T, Attrs - {A})
 	RETURN Root
 ```
 dove `X` sono gli esempi di training, `T` il target attribute e `Attrs` gli altri attributi (inizialmente tutti).
@@ -58,7 +58,7 @@ $$
 }
 $$
 ## Information Gain
-$\textcolor{#ff82b2}{S_V}$ è un sottoinsieme di esempi di $\textcolor{#ff82b2}{S}$ per i quali $\textcolor{#ff82b2}{A}$ ha valore $\textcolor{#ff82b2}{v}$. Maggiore è il guadagno, maggiore è l'efficienza dell'attributo nella classificazione dei dati di training
+$\textcolor{#ff82b2}{S_V}$ è un sottoinsieme di esempi di $\textcolor{#ff82b2}{S}$ per i quali $\textcolor{#ff82b2}{A}$ ha valore $\textcolor{#ff82b2}{v}$. Maggiore è il guadagno, maggiore è l'efficienza dell'attri  buto nella classificazione dei dati di training
 #### Perché si usa
 L'entropia misura l'omogeneità (anzi l'impurità) della classe del sottoinsieme di esempi, quindi si <span style="color:#ff82b2"><i>seleziona un</i></span> $\textcolor{#ff82b2}{A}$ che <span style="color:#ff82b2"><i>massimizzi</i></span> $\textcolor{#ff82b2}{Gain(S, A)}$. Dopo la suddivisione ci sono valuri più bassi (target più omogenei) in ogni sottoinsieme (<span style="color:#ff82b2"><b>maggior guadagno</b></span>).
 Lo scopo è di <span style="color:#ff82b2"><i>separare gli esempi</i></span> sulla base del target, trovare gli attributi che discriminano gli esempi che appartengono a diversi target $\textcolor{#9172dd}{\text{( ad es.}} \text{ tutti i positivi a sinistra, tutti i negativi a destra}\textcolor{#9172dd}{)}$.
