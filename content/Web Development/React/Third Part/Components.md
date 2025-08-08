@@ -149,6 +149,54 @@ In the documentation page there are instruction to:
 * [Make responsive ui](https://mui.com/material-ui/guides/responsive-ui/)
 * [Testing](https://mui.com/material-ui/guides/testing/)
 * ... and much more
+## Material Tailwind
+[Material Tailwind Documentation](https://www.material-tailwind.com/docs/react/installation)
+Material Tailwind is a free and open-source components library for ReactJS and Tailwind CSS inspired by Material Design.
+### Installation
+Install @material-tailwind/react as a dependency using NPM by running the following command:
+```bash
+npm i @material-tailwind/react
+```
+Once you install @material-tailwind/react you need to wrap your tailwind css configurations with the `withMT()` function coming from `@material-tailwind/react/utils`.
+```js {1, 3, 9}
+const withMT = require("@material-tailwind/react/utils/withMT"); 
+
+module.exports = withMT({ 
+	content: ["./index.html", "./src/**/*.{vue,js,ts,jsx,tsx}"], 
+	theme: { 
+		extend: {}, 
+	}, 
+	plugins: [], 
+});
+```
+### Theme Provider
+@material-tailwind/react comes with a theme provider that set's the default theme/styles for components or to provide your own theme/styles to your components. You need to wrap your entire application with the `ThemeProvider` coming from @material-tailwind/react.
+
+On the `src/main` put the code bellow.
+```jsx {6, 10, 11}
+import React from "react"; 
+import ReactDOM from "react-dom/client"; 
+import App from "./App"; 
+import "./index.css"; 
+import { ThemeProvider } from "@material-tailwind/react"; 
+
+ReactDOM.createRoot(document.getElementById("root")).render( 
+	<React.StrictMode> 
+		<ThemeProvider> 
+			<App /> 
+		</ThemeProvider> 
+	</React.StrictMode> 
+);
+```
+### Basic usage
+Now you're good to go and use @material-tailwind/react in your project. Choose a component from [Material Tailwind Documentation](https://www.material-tailwind.com/docs/react/installation) and use it as:
+```jsx
+import { Button } from "@material-tailwind/react"; 
+
+export default function Example() { 
+	return <Button>Button</Button>; 
+}
+```
 ## FlowBite
 [Flowbite documentation page](https://flowbite-react.com/docs/getting-started/introduction)
 [Flowbite React](https://github.com/themesberg/flowbite-react) is a comprehensive UI component library that brings together the power of React and the utility-first approach of Tailwind CSS. Built on top of the core Flowbite components, it provides a robust foundation for creating modern, responsive web applications.
@@ -168,3 +216,32 @@ import { Accordion } from "flowbite-react";
 ```
 and use it as explained in the documentation. 
 Each component have different features and implementations, check the documentations.
+#### Theme
+You can change color and other styles with `Theme Provider`:
+```tsx
+import { Button, createTheme, ThemeProvider } from "flowbite-react";
+
+const customTheme = createTheme({
+  button: {
+    color: {
+      primary: "bg-red-500 hover:bg-red-600",
+      secondary: "bg-blue-500 hover:bg-blue-600",
+    },
+    size: {
+      lg: "px-6 py-3 text-lg",
+    },
+  },
+});
+
+function App() {
+  return (
+    <ThemeProvider theme={customTheme}>
+      <Button color="primary">Red Button</Button>
+      <Button color="secondary" size="lg">
+        Large Blue Button
+      </Button>
+    </ThemeProvider>
+  );
+}
+```
+For more specific customization check [Flowbite documentation](https://flowbite-react.com/docs/customize/theme#theme-provider).
