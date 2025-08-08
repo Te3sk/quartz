@@ -1,4 +1,4 @@
-import { QuartzConfig } from "./quartz/cfg"
+		import { QuartzConfig } from "./quartz/cfg"
 import * as Plugin from "./quartz/plugins"
 
 /**
@@ -8,15 +8,15 @@ import * as Plugin from "./quartz/plugins"
  */
 const config: QuartzConfig = {
   configuration: {
-    pageTitle: "Quartz 4",
-    pageTitleSuffix: "",
+    pageTitle: "Tech Vault",
+    pageTitleSuffix: "Te3sk custom doc",
     enableSPA: true,
     enablePopovers: true,
     analytics: {
       provider: "plausible",
     },
     locale: "en-US",
-    baseUrl: "quartz.jzhao.xyz",
+    baseUrl: "te3sk.tech-vault.xyz",
     ignorePatterns: ["private", "templates", ".obsidian"],
     defaultDateType: "modified",
     theme: {
@@ -29,26 +29,26 @@ const config: QuartzConfig = {
       },
       colors: {
         lightMode: {
-          light: "#faf8f8",
-          lightgray: "#e5e5e5",
-          gray: "#b8b8b8",
-          darkgray: "#4e4e4e",
-          dark: "#2b2b2b",
-          secondary: "#284b63",
-          tertiary: "#84a59d",
-          highlight: "rgba(143, 159, 169, 0.15)",
-          textHighlight: "#fff23688",
+          light: "#FFFFFF",
+          lightgray: "#D1CAB3",
+          gray: "#36A56B",
+          darkgray: "#2F344B",
+          dark: "#39A1CA",
+          secondary: "#AFA177",
+          tertiary: "#36A56B",
+          highlight: "#E9D8D9",
+          textHighlight: "#E9D8D9",
         },
         darkMode: {
-          light: "#161618",
-          lightgray: "#393639",
-          gray: "#646464",
-          darkgray: "#d4d4d4",
-          dark: "#ebebec",
-          secondary: "#7b97aa",
-          tertiary: "#84a59d",
-          highlight: "rgba(143, 159, 169, 0.15)",
-          textHighlight: "#b3aa0288",
+          light: "#2E3138",
+          lightgray: "#535965",
+          gray: "#BD7593",
+          darkgray: "#D2D5DA",
+          dark: "#5B9B81",
+          secondary: "#E35C92",
+          tertiary: "#AF5A7D",
+          highlight: "#40454F",
+          textHighlight: "#40454F",
         },
       },
     },
