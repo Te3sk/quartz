@@ -9,6 +9,20 @@ status: completed
 author: Te3sk
 description: Section introudction
 ---
+# Summary
+* **Installation**
+	* [[Installation + Tailwind|Installation of Vite React with TailwindCSS configuration]]
+	* TODO: Installation and configuration of Vite React project
+* **Deploy**
+	* [[Web Development/React/Build|Build the project]]
+	* [[React Frontend|Hosting on linux remote server]]
+* **UI & UX**
+	* [[Icons]]
+	* [[Components|Ready-to-use Components]]
+	* TODO: FIND OTHER TOOLS
+* **Third Part Services**
+	* **Stripe**
+		* [[Stripe Payment Checkout Page|Embed a checkout page]]
 # Introduction
 
 This directory is dedicated to my personal React.js knowledge base. Here, you'll find focused documentation on core React concepts, component design patterns, state management strategies, and practical examples from various projects. It's a curated collection of insights and solutions, designed to be a quick reference for common challenges and best practices in React development.
@@ -26,14 +40,3 @@ React is widely used for:
 - **Server-side rendering (SSR) and static site generation (SSG):** Frameworks like Next.js leverage React for performance-optimized web applications.
 
 Essentially, React helps developers build modern, efficient, and scalable web applications by providing a powerful and flexible way to manage the UI.
-# Summary
-* **Installation**
-	* [[Installation + Tailwind|Installation of Vite React with TailwindCSS configuration]]
-	* TODO: Installation and configuration of Vite React project
-* **UI & UX**
-	* [[Icons]]
-	* [[Components|Ready-to-use Components]]
-	* TODO: FIND OTHER TOOLS
-* **Third Part Services**
-	* **Stripe**
-		* [[Stripe Payment Checkout Page|Embed a checkout page]]

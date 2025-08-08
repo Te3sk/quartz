@@ -10,5 +10,9 @@ status: completed
 author: Te3sk
 description: Section introudction
 ---
+# Summary
+* [[React Frontend]]
+* [[ExpressJS Backend]]
+* [[NGINX|NGINX Configuration]]
 # Introduction
-This subdirectory contains my personal notes and configurations for managing Linux servers. You'll find documentation on setting up different services, troubleshooting common issues, and optimizing server performance. It's a collection of tips and tricks I've gathered over time, tailored to my specific needs and workflows.******
+This subdirectory contains my personal notes and configurations for managing Linux servers. You'll find documentation on setting up different services, troubleshooting common issues, and optimizing server performance. It's a collection of tips and tricks I've gathered over time, tailored to my specific needs and workflows.

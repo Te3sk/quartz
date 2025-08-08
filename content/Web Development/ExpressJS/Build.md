@@ -59,6 +59,7 @@ npm install --production
 # Test the project
 Once we have `dist`, we can run the command
 ```bash
+cd dist
 node server.js
 ```
 to run a local static web server that serves the production-ready version.

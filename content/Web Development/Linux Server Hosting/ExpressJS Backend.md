@@ -97,3 +97,4 @@ If we receive an error from PM2 Status, we can look at the logs to figure out wh
 ```bash
 pm2 logs
 ```
+# TODO: CONNECT TO NGINX CONFIG
