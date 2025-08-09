@@ -60,11 +60,11 @@ TODO
 
 > A living project – I update this vault as I go.
 
-- [x] Initial structure
+- [ ] Add a section about bash, initialize with the script used to deploy trovapuli-frontend
+- [ ] Finish About Me section (add one or more page and linked them, as a portfolio)
 - [ ] Add AI section (OpenAI, Gemini, etc.)
 - [ ] Document "Serverplan + NGINX + React" flow
-- [ ] Expand Stripe troubleshooting
-- [ ] Write a guide for new teammates
+- [x] Initial structure
 
 ---
 
