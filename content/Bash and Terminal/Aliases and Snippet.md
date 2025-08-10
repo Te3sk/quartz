@@ -10,6 +10,9 @@ status: in_corso
 author: Te3sk
 description: This document explain how create snippet in unix terminal, including alias and bash functions
 ---
+- [[#Setup your aliases|Setup your aliases]]
+- [[#Set up snippet function|Set up snippet function]]
+
 **Aliases and shell snippets** are custom commands you define in your shell’s configuration file (`.bashrc` for Bash, `.zshrc` for [[Bash and Terminal#ZSH|Zsh]]) to save time and reduce repetitive typing.  
 An **alias** replaces a long or complex command with a short keyword (e.g., `alias gs='git status'`), while a **snippet function** can combine multiple commands or add logic, acting like a small reusable script.  
 The main benefit is speed and efficiency: frequently used commands become faster to type, less prone to mistakes, and easier to remember.  

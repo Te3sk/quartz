@@ -13,7 +13,8 @@ author: Te3sk
 description: work efficiently with the terminal, create snippets and shortcut functions, write bash scripts to speed up work
 ---
 # Summary
-* d
+* [[Aliases and Snippet]]
+* [[Bash Functions]]
 # Introduction
 This section focuses on helping you **work efficiently with the terminal**, whether you’re running quick commands, automating tasks, or building complex workflows.  
 It brings together essential knowledge, practical tips, and ready-to-use examples so you can navigate faster, write less repetitive code, and spend more time on meaningful development work.

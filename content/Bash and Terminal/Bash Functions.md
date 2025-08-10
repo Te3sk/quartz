@@ -8,6 +8,23 @@ status: in_corso
 author: Te3sk
 description: Basic bash syntax
 ---
+- [[#Introduction|Introduction]]
+- [[#Syntax|Syntax]]
+		- [[#1. Parentheses Syntax (most common)|1. Parentheses Syntax (most common)]]
+		- [[#2. `function` Keyword Syntax|2. `function` Keyword Syntax]]
+		- [[#Naming Conventions|Naming Conventions]]
+	- [[#Syntax#Arguments|Arguments]]
+		- [[#Arguments#Example: Using Arguments|Example: Using Arguments]]
+		- [[#Arguments#Example: Handling Multiple Arguments|Example: Handling Multiple Arguments]]
+- [[#Variables (Local vs Global)|Variables (Local vs Global)]]
+		- [[#Arguments#Example:|Example:]]
+	- [[#Variables (Local vs Global)#Returning Values|Returning Values]]
+		- [[#Returning Values#Example: Exit Status|Example: Exit Status]]
+		- [[#Returning Values#Example: Output Capture|Example: Output Capture]]
+	- [[#Variables (Local vs Global)#Composition and Reuse|Composition and Reuse]]
+		- [[#Composition and Reuse#Example: Function Calling Another|Example: Function Calling Another]]
+		- [[#Composition and Reuse#Example: Pipeline in a Function|Example: Pipeline in a Function]]
+- [[#Best Practices|Best Practices]]
 ## Introduction
 In Bash, a **function** is a reusable block of commands that can be executed by simply calling its name.  
 Functions are useful for automating repetitive tasks, grouping related commands together, and improving the readability of your shell scripts or configuration files.
