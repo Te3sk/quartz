@@ -46,27 +46,11 @@ Besides coding, I also **teach advanced digital skills** to students and educato
 This vault reflects how I think, how I solve problems, and how I guide others in doing the same.  
 It’s part **knowledge base**, part **onboarding tool**, and part **personal operating system**.
 
-> *This is how I keep myself sharp – and help others level up.*
-
 ---
-
-## 🧭 Start Here
-
-If it's your first time here, I recommend starting with:
-
 TODO
 ---
-## 🧵 Updates & TODOs
-
-> A living project – I update this vault as I go.
-
 - [ ] Add a section about bash, initialize with the script used to deploy trovapuli-frontend
 - [ ] Finish About Me section (add one or more page and linked them, as a portfolio)
 - [ ] Add AI section (OpenAI, Gemini, etc.)
 - [ ] Document "Serverplan + NGINX + React" flow
 - [x] Initial structure
-
----
-
-> QUOTE: TODO
-> — inspired by Richard Feynman
