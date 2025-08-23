@@ -45,3 +45,75 @@ Follow all the instruction to [[Google Tag Manager#Installation|setup GMT]]. Tak
 	</body>
 </html>
 ```
+## PageView - push in dataLayer route changes
+Create a GMT helper that send events data to GMT `dataLayer`:
+```ts title="../src/lib/gmt.ts"
+declare global { interface Window { dataLayer: {[key: string]: any}[]} }
+
+export function pushGtm(eventName: string, params: Record<string, any> = {}) {
+  window.dataLayer = window.dataLayer || [];
+  window.dataLayer.push({ event: eventName, ...params });
+}
+```
+And create a component that intercept the changes of course in React Router and sends a `virtual_pageview` to any navigation, with URL, path and page title:
+```tsx title="../src/Hooks/RouteChangeTrack.tsx
+import { useEffect, useRef } from "react";
+import { useLocation } from "react-router-dom";
+import { pushGtm } from "./lib/gtm";
+
+export default function RouteChangeTracker() {
+  const location = useLocation();
+  const prevUrlRef = useRef<string>();
+
+  useEffect(() => {
+    const url = window.location.href;
+    if (prevUrlRef.current === url) return; // evita duplicati
+    prevUrlRef.current = url;
+
+    pushGtm("virtual_pageview", {
+      page_location: url,
+      page_path: location.pathname + location.search + location.hash,
+      page_title: document.title || undefined,
+    });
+  }, [location.pathname, location.search, location.hash]);
+
+  return null;
+}
+```
+Finally integrate the component in `App.jsx`:
+```tsx {4}
+import RouteChangeTracker from "./RouteChangeTracker";
+/* ... */
+<Router>
+  <RouteChangeTracker />
+  {/* .... */}
+</Router>
+```
+After write and deploy those component, [[Google Analytics#Config Google Tag Manager|config Google Tag Manager]].
+## Send event from the app
+After defining the [[Google Analytics#Define Event taxonomy|Event Taxonomy]], you have to implement the tracker in the app. Create a library file in the `/lib` folder or create a `/analytics` or `/lib/analytics` (depend on your project) named `events.ts`. This file should have a function for each event defined in the [[Web Analysis#**Analytics Documentation – Structure Overview**|documentation]] and each function should be like the following:
+```typescript title="events.ts"
+import { pushGtm } from "./gmt";
+const sent = new Set();
+
+function track_event(event, params = {}) {
+  // 1) enrich
+  const enriched = {
+    page_location: location.href,
+    currency: "EUR",
+    ...params,
+  };
+
+  // 2) sanitize / validate
+  if (enriched.email) delete enriched.email; // no PII
+  // validate types minimally
+
+  // 3) dedup (optional)
+  const key = `${event}:${enriched.transaction_id ?? ""}`;
+  if (event === "purchase" && sent.has(key)) return;
+  if (event === "purchase") sent.add(key);
+
+  // 4) send
+  pushGMT("[event_name]", enriched)
+}
+```

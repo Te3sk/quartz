@@ -30,13 +30,16 @@ Each topic usually includes:
 - Related concepts, alternatives, or useful links
 
 Here’s a quick map to explore the content:
-* Web Development
+* [[Web Development]]
 	* [[React Development]]
 	* [[Linux Server Hosting]]
 	* [[ExpressJS Backend]]
 * [[Bash and Terminal]]
 	* [[Aliases and Snippet]]
 	* [[Bash Functions]]
+* [[Web Analysis]]
+	* [[Google Tag Manager]]
+	* [[Google Analytics]]
 
 ---
 ## About Me
