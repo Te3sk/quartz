@@ -42,9 +42,8 @@ We have to put the GA4 measurement code in every page of our site. That code che
 ![[GA4 - basic metrics scheme.png]]
 *Users (GA4 world)* is the highest is the highest entity in we are measuring and operate with, is something closest to **devices**.
 One *user* can have multiple *Session* during his interaction whit the website and during *session* there are multiple *View* or *Events* occurring.
-```ad-warning
-We aren't measuring **user** ad **umans** but with something more closer to **device**
-```
+
+We aren't measuring **user** ad **humans** but with something more closer to **device**
 
 There are 4 methods of identification in GA4:
 1. **User ID:** we need to implement a way to send this ID to GA4 with every hit and we need to let GA4 to know that
@@ -53,7 +52,7 @@ There are 4 methods of identification in GA4:
 4. **Modelling:** this is the most advance, works for user who are non-consenting to be measure but google still can anonymously tracking them.
  We can choose witch method user by going to `Admin > Data Display > Reporting Identity` from our [Google Analytics Workspace](https://analytics.google.com/analytics/).
 ### Session & Engagement
-```ad-def 
+
 **Session:** it's a group of users's interaction with the website. By interaction we mean *page view* and event like *adding product to cart* or *purchasing*. If not adjusted, the time window between interaction cannot be longer than 30 minutes.
 
 **Engaged Session:** The way google define it is based on 3 conditions:
@@ -64,7 +63,9 @@ There are 4 methods of identification in GA4:
 If one or more of these conditions are satisfied, the session are mark as **engaged**.
 
 **Engagement Rate:** the percentage of engaged sessions out of the total number of sessions.
-```
+
+**Bounce Rate:** The volume (percentage) of the sessions which bounced without performing any other interactions.
+$$\text{Bounce Rate}=1 - \text{Engagement Rate}$$
 
 By going to `admin > Property Settings > Data Streams > choose a datastream > Configure Tag Settings > Show More > Adjust session timeout` we can change the amount of seconds to consider a session engaged (condition 1).
 In the same section, we can choose the amount of inactivity time to **consider a session expired**.
@@ -76,9 +77,9 @@ A **Google Analytics Data Stream** is a data source that sends information from 
 Each stream (Web, iOS, or Android) contains its own unique measurement ID, which is used in your tracking setup to route collected events and user data to the correct GA property.
 ##### 1. Open the Web Data Stream and enable Enhanced Measurement
 In [Google Analytics Workspace](https://analytics.google.com/analytics/) click on **`admin`**$\implies$**`Data Streams`** and create a new stream by selecting **`Web Stream`**. In **`Enhanced measurement`** tab select ON and choose and choose what to track automatically (*page views, scrolling, outbound clicks, site search, videos, files*). 
-```ad-TIP
+
 If you will be sending page_views via GTM on route changes, disable “Page views” here to avoid duplicates.
-```
+
 ##### 2. Set the property's time zone and currency
 Go to **`Admin`** $\implies$ **`Property details`** and set up **Reporting time zone**
 ##### 3. Define your internal traffic (IP)
@@ -94,9 +95,9 @@ Implement a helper that acts as a hook and captures page changes in your system.
 Now you have to enable **`page_view`** in GA4 by sending a custom event (`virtual_pageview`) to GMT at each route change.
 1. **GA4 Configuration Tag:** setup GA4 configuration tag without automatic sending of `page_view`
 Open [GMT Workspace](https://tagmanager.google.com), click **`Tag`** $\implies$ **`New`** $\implies$ **`Tag Type:`**`Google Analytics: GA4 Configuration`, and create a GA4 configuration tag with your measurement ID (`G-XXXX`). In the option, uncheck "*Send a page view event when this configuration loads*", this avoid double counting, set the trigger to *All Page* and save.
-```ad-warning
+
 If you have **Enhanced Measurement** $\implies$ **Pageviews enabled** in GA4, turn it off or coordinate carefully; otherwise, you'll end up with double/triple pageviews.
-```
+
 2. **Tell to GMT which data to read in `dataLayer`:** In GMT create 3 variable with the following names: `page_location`, `page_path` and `page_title`. They will be needed soon to fill `page_view` parameters
 3. **Create `page_view` trigger:** create a ***Custom event*** trigger with **event name:** `virtual_pageview`, whenever your app pushes this event to the dataLayer, GTM will be able to react.
 4. **Create the tag that send `page_view` to GA4** and connect it to the custom event `virtual_pageview`: from GMT workspace, go to **`Tags`** $\implies$ **`New`** $\implies$ **`Tag Configuration`**, now select **`Google Analytics`** $\implies$ **`GA4 Event`**. In the page that opens you have to insert your `measurement ID`, the event name (`page_view`).
