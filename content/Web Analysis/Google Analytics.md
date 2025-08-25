@@ -10,20 +10,24 @@ author: Te3sk
 description: This tool tracks and reports website traffic, user behavior, and conversions, providing a comprehensive view of performance metrics.
 ---
 - [[#Introduction|Introduction]]
-- [[#How the measurement is done|How the measurement is done]]
-- [[#Basic Metrics|Basic Metrics]]
-	- [[#Basic Metrics#User Identification|User Identification]]
-	- [[#Basic Metrics#Session & Engagement|Session & Engagement]]
-	- [[#Basic Metrics#Users|Users]]
-	- [[#Basic Metrics#Time measurement|Time measurement]]
+- [[#How GA4 Works|How GA4 Works]]
+	- [[#How GA4 Works#How the measurement is done|How the measurement is done]]
+	- [[#How GA4 Works#Basic Metrics|Basic Metrics]]
+		- [[#Basic Metrics#User Identification|User Identification]]
+		- [[#Basic Metrics#Session & Engagement|Session & Engagement]]
+		- [[#Basic Metrics#Users|Users]]
+		- [[#Basic Metrics#Time measurement|Time measurement]]
+- [[#Setup account|Setup account]]
+	- [[#Setup account#Basic setup|Basic setup]]
+- [[#--------- NEW ---------|--------- NEW ---------]]
 - [[#GA4 Data Stream|GA4 Data Stream]]
-	- [[#1. Open the Web Data Stream and enable Enhanced Measurement|1. Open the Web Data Stream and enable Enhanced Measurement]]
-	- [[#2. Set the property's time zone and currency|2. Set the property's time zone and currency]]
-	- [[#3. Define your internal traffic (IP)|3. Define your internal traffic (IP)]]
-	- [[#4. Create Data Filter "Internal Traffic"|4. Create Data Filter "Internal Traffic"]]
+	- [[#Time measurement#1. Open the Web Data Stream and enable Enhanced Measurement|1. Open the Web Data Stream and enable Enhanced Measurement]]
+	- [[#Time measurement#2. Set the property's time zone and currency|2. Set the property's time zone and currency]]
+	- [[#Time measurement#3. Define your internal traffic (IP)|3. Define your internal traffic (IP)]]
+	- [[#Time measurement#4. Create Data Filter "Internal Traffic"|4. Create Data Filter "Internal Traffic"]]
 - [[#Send a page_view at each route change|Send a page_view at each route change]]
-	- [[#Time measurement#Track Route Change|Track Route Change]]
-	- [[#Time measurement#Config Google Tag Manager|Config Google Tag Manager]]
+	- [[#Basic setup#Track Route Change|Track Route Change]]
+	- [[#Basic setup#Config Google Tag Manager|Config Google Tag Manager]]
 - [[#Define Event taxonomy|Define Event taxonomy]]
 - [[#Send event from the app|Send event from the app]]
 ## Introduction
@@ -35,14 +39,15 @@ This data is then processed and presented in an interactive dashboard, enabling 
 **Prerequisite:** Ensure that [[Google Tag Manager#Installation|Google Tag Manager]] (or another tracking implementation method) is already installed on your site so the Google Analytics tag can be deployed and start collecting data.
 
 You can try the features on the [GA4 Demo Account](https://support.google.com/analytics/answer/6367342#access&zippy=%2Cin-this-article).
-## How the measurement is done
+## How GA4 Works
+### How the measurement is done
 GA4 is based on cookies, it process any browser as a different user with a random number and the first timestamp in which the user visits our site, these two values joined together make the **Client ID**.
 We have to put the GA4 measurement code in every page of our site. That code check if there are the GA4 cookie in the browser and, if there isn't, it create one.
 [introduction to server-side tagging](https://developers.google.com/tag-platform/tag-manager/server-side/intro?utm_source=advocacy&utm_medium=social&utm_campaign=gtm)
-[Enhanced measurement events](https://support.google.com/analytics/answer/9216061?hl=en
-## Basic Metrics
+[Enhanced measurement events](https://support.google.com/analytics/answer/9216061?hl=en)
+### Basic Metrics
 [What is a user in GA4](https://www.measurelab.co.uk/blog/users-ga4/)
-### User Identification
+#### User Identification
 ![[GA4 - basic metrics scheme.png]]
 *Users (GA4 world)* is the highest is the highest entity in we are measuring and operate with, is something closest to **devices**.
 One *user* can have multiple *Session* during his interaction whit the website and during *session* there are multiple *View* or *Events* occurring.
@@ -55,7 +60,7 @@ There are 4 methods of identification in GA4:
 3. **Device ID:** this is the most used, the identifier is stored in the cookies
 4. **Modelling:** this is the most advance, works for user who are non-consenting to be measure but google still can anonymously tracking them.
  We can choose witch method user by going to `Admin > Data Display > Reporting Identity` from our [Google Analytics Workspace](https://analytics.google.com/analytics/).
-### Session & Engagement
+#### Session & Engagement
 
 **Session:** it's a group of users's interaction with the website. By interaction we mean *page view* and event like *adding product to cart* or *purchasing*. If not adjusted, the time window between interaction cannot be longer than 30 minutes.
 
@@ -73,15 +78,23 @@ $$\text{Bounce Rate}=1 - \text{Engagement Rate}$$
 
 By going to `admin > Property Settings > Data Streams > choose a datastream > Configure Tag Settings > Show More > Adjust session timeout` we can change the amount of seconds to consider a session engaged (condition 1).
 In the same section, we can choose the amount of inactivity time to **consider a session expired**.
-### Users
+#### Users
 **Active Users:** are the users who had at least one **engaged sessions**. There always more **Total Users** than the **Active Users**. 
-### Time measurement
+#### Time measurement
  The time are measured by the events timestamp (pageview or others), then GA4 calculate how much time passes between one event and another. In the example below we can see that GA4 get 0 minutes of `Page 4` viewing because the exit isn't an event and doesn't send a timestamp.
 ![[GA4 - timing scheme.jpg]]
 The problem is that this system does not consider the option where a user visits other sites between one event and another on our site, which is why [[Google Analytics#Session & Engagement|engagement]] is a much more used and reliable metric.
 The problem was solved by adding the **Unload Event**, that could be the unfocus or the closure of our website. With this event we can get a report closer to reality and also know how many time the user spent on the last page.
 
+## Setup account
+### Basic setup - Data stream
+The first thing to do is to **create the account**. To do that, login into google with any GA4 account and click on `Admin > Create Property`, there  insert required informations. Then select the platform type (`Web`, `Android App` or `IOS App`), setup the relative **data stream** with the required informations, for web are `stream name` and `site URL`, and the **enhanced measurement**, the possibility to measure some interactions and content in addition of standard `pageview`.
+### Hardcoded measurement - Tag instructions
+Now you can see `Web Stream Details` (if you choose `web` as platform), with the details of the data stream you just created. There you can find `Tag Instructions`, by selecting it you can connect your website to GA4. The setup page will open and you have 2 way to make the connection:
+* **Install with a website builder:** if your builder is in the list, you can automatically connect the system by selecting the correct builder
+* **Install manually:** you will see the **HTML Google Tag** and you have to copy and paste in your website on each page, ideally as high as possible in the HTML code. This is the moment from which you are starting to collecting the datas, it works from the moment you copy that to your website (and deploy). 
 
+## --------- OLD ---------
 ---
 ## GA4 Data Stream
 A **Google Analytics Data Stream** is a data source that sends information from your website or app to Google Analytics 4.  

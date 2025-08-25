@@ -55,6 +55,7 @@ It’s part **knowledge base**, part **onboarding tool**, and part **personal op
 ---
 TODO
 ---
+- [ ] Write *how to create a container* in [[Google Tag Manager]] doc
 - [ ] Add a section about bash, initialize with the script used to deploy trovapuli-frontend
 - [ ] Finish About Me section (add one or more page and linked them, as a portfolio)
 - [ ] Add AI section (OpenAI, Gemini, etc.)

@@ -10,6 +10,44 @@ status: in_corso
 author: Te3sk
 description: Full workflow to integrate all the analytics tool in a react app
 ---
+- [[#Google Tag Manager - GMT|Google Tag Manager - GMT]]
+- [[#PageView - push in dataLayer route changes|PageView - push in dataLayer route changes]]
+- [[#Send event from the app|Send event from the app]]
+## Connect GMT
+Follow all the instruction to [[Google Tag Manager#Installation|setup GMT]]. When you have to [[Google Tag Manager#Install the GMT Manager Code|install GMT manager code]] open the directory of your project and paste the snippet in the file `[project]/index.html`.
+When the project is compiled, all components and pages are rendered within a single `index.html` file. Therefore, placing the GTM snippet in this file ensures it is loaded and available across every page of your web app, as navigation occurs without a full page refresh.
+The result should be like the following code:
+```html title="[project]/index.html" {5-14, 22-25}
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		[...]
+		<!-- Google Tag Manager -->
+		<!-- Loads the Google Tag Manager script and initializes the dataLayer to manage all tracking tags centrally. -->
+		<script>(function (w, d, s, l, i) {
+		w[l] = w[l] || []; w[l].push({
+		'gtm.start':
+		new Date().getTime(), event: 'gtm.js'
+		}); var f = d.getElementsByTagName(s)[0],
+		j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : ''; j.async = true; j.src =
+		'https://www.googletagmanager.com/gtm.js?id=' + i + dl; f.parentNode.insertBefore(j, f);
+		})(window, document, 'script', 'dataLayer', 'GTM-AAA11AAA');</script>
+	</head>
+	<body>
+		<div id="root"></div>
+		<script type="module" src="/src/main.tsx"></script>
+		<!-- Provides a fallback tracking method for users with JavaScript disabled, using an invisible iframe. -->
+		<noscript>
+			<iframe src="https://www.googletagmanager.com/ns.html?id=GTM-WKN46NRS" height="0" width="0" style="display:none;visibility:hidden"></iframe>
+		</noscript>
+		<div id="root"></div>
+		[...]
+		<script type="module" src="/src/main.tsx"></script>˙
+	</body>
+</html>
+```
+
+## --------- OLD ---------
 
 ## Google Tag Manager - GMT
 Follow all the instruction to [[Google Tag Manager#Installation|setup GMT]]. Take the GMT snippets and paste them into the `index.html` file located in the project route (outside the `src/` folder). You should have something like this:

@@ -17,9 +17,20 @@ description: A tag management system that lets you deploy and update tracking co
 	- [[#3. **Deploy and test**|3. Deploy and test]]
 ## Introduction
 **Google Tag Manager (GTM)** is a free tag management system by Google that allows you to add, update, and manage tracking codes (tags) on your website or app without directly modifying the source code.  
-It’s important because it centralizes all your analytics, advertising, and custom tracking scripts in one interface, reducing deployment time and minimizing the risk of errors from manual code edits.  
+It’s important because it centralizes all your [[Google Analytics|analytics]], [[Google Ads|advertising]], and custom tracking scripts in one interface, reducing deployment time and minimizing the risk of errors from manual code edits.  
 GTM works by embedding a small container script in your site’s HTML; inside the GTM dashboard, you define tags (e.g., Google Analytics, Meta Pixel), triggers that decide when those tags fire (e.g., page load, button click), and variables that store dynamic values.  
 This approach enables marketers and developers to deploy and adjust tracking implementations quickly, without requiring a full development cycle for every change.
+## How GMT Works
+There are **3 main instances:**
+* **Tags:** a measurement code
+* **Triggers:** the conditions when we want to fire measurement codes
+* **Variables:** any data we can collect from the website or push in the Data Layer and collect to the tags
+## Setup
+### Install the GMT Manager Code
+First you have to create the **connection between GMT and your website**. To do that, in [GMT Workspace](https://tagmanager.google.com) **create a container** and then click `Admin > Install Google Tag Manager`. There  you can find 2 HTML tag and you have to paste them in the HTML files of your website (each page), one in the `<head>` and the other in the `<body>`.
+### GA4 Configuration Tag
+Now click on `New Tag`
+## --------- OLD ---------
 ## Installation
 First login with the right google account and go to [GMT Workspace](https://tagmanager.google.com).
 #### 1. **Create a Container**
