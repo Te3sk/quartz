@@ -18,16 +18,22 @@ description: This tool tracks and reports website traffic, user behavior, and co
 		- [[#Basic Metrics#Users|Users]]
 		- [[#Basic Metrics#Time measurement|Time measurement]]
 - [[#Setup account|Setup account]]
-	- [[#Setup account#Basic setup|Basic setup]]
-- [[#--------- NEW ---------|--------- NEW ---------]]
+	- [[#Setup account#Basic setup - Data stream|Basic setup - Data stream]]
+	- [[#Setup account#Hardcoded measurement - Tag instructions|Hardcoded measurement - Tag instructions]]
+- [[#Additional Setup|Additional Setup]]
+	- [[#Additional Setup#Data Retention|Data Retention]]
+	- [[#Additional Setup#Data Stream Tag Setting|Data Stream Tag Setting]]
+	- [[#Additional Setup#Modify events|Modify events]]
+- [[#Conversions setup|Conversions setup]]
+- [[#--------- OLD ---------|--------- OLD ---------]]
 - [[#GA4 Data Stream|GA4 Data Stream]]
 	- [[#Time measurement#1. Open the Web Data Stream and enable Enhanced Measurement|1. Open the Web Data Stream and enable Enhanced Measurement]]
 	- [[#Time measurement#2. Set the property's time zone and currency|2. Set the property's time zone and currency]]
 	- [[#Time measurement#3. Define your internal traffic (IP)|3. Define your internal traffic (IP)]]
 	- [[#Time measurement#4. Create Data Filter "Internal Traffic"|4. Create Data Filter "Internal Traffic"]]
 - [[#Send a page_view at each route change|Send a page_view at each route change]]
-	- [[#Basic setup#Track Route Change|Track Route Change]]
-	- [[#Basic setup#Config Google Tag Manager|Config Google Tag Manager]]
+	- [[#Modify events#Track Route Change|Track Route Change]]
+	- [[#Modify events#Config Google Tag Manager|Config Google Tag Manager]]
 - [[#Define Event taxonomy|Define Event taxonomy]]
 - [[#Send event from the app|Send event from the app]]
 ## Introduction
@@ -61,7 +67,6 @@ There are 4 methods of identification in GA4:
 4. **Modelling:** this is the most advance, works for user who are non-consenting to be measure but google still can anonymously tracking them.
  We can choose witch method user by going to `Admin > Data Display > Reporting Identity` from our [Google Analytics Workspace](https://analytics.google.com/analytics/).
 #### Session & Engagement
-
 **Session:** it's a group of users's interaction with the website. By interaction we mean *page view* and event like *adding product to cart* or *purchasing*. If not adjusted, the time window between interaction cannot be longer than 30 minutes.
 
 **Engaged Session:** The way google define it is based on 3 conditions:
@@ -87,12 +92,34 @@ The problem is that this system does not consider the option where a user visits
 The problem was solved by adding the **Unload Event**, that could be the unfocus or the closure of our website. With this event we can get a report closer to reality and also know how many time the user spent on the last page.
 
 ## Setup account
+### Create and configure the Account
+**TODO**
 ### Basic setup - Data stream
 The first thing to do is to **create the account**. To do that, login into google with any GA4 account and click on `Admin > Create Property`, there  insert required informations. Then select the platform type (`Web`, `Android App` or `IOS App`), setup the relative **data stream** with the required informations, for web are `stream name` and `site URL`, and the **enhanced measurement**, the possibility to measure some interactions and content in addition of standard `pageview`.
 ### Hardcoded measurement - Tag instructions
 Now you can see `Web Stream Details` (if you choose `web` as platform), with the details of the data stream you just created. There you can find `Tag Instructions`, by selecting it you can connect your website to GA4. The setup page will open and you have 2 way to make the connection:
 * **Install with a website builder:** if your builder is in the list, you can automatically connect the system by selecting the correct builder
 * **Install manually:** you will see the **HTML Google Tag** and you have to copy and paste in your website on each page, ideally as high as possible in the HTML code. This is the moment from which you are starting to collecting the datas, it works from the moment you copy that to your website (and deploy). 
+## Additional Setup
+### Data Retention
+By going to `Admin > Data Settings > Data Retention` you can increase the retention of the data from 2 to 14 months. In this way you will have a lot more datas you can then aggregate.
+### Data Stream Tag Setting
+By going to `Admin > Data Stream > [your data stream] > Configure tag settings` you can access 2 useful features:
+* **`List of unwanted referral`:** you can define the list of unwanted referrals defines domains that should be excluded from referral traffic in GA4, preventing sessions from being attributed to those sources (e.g. payment gateways) instead of the original traffic source.
+* **`Adjust session timeout`:** you can edit the timing values for the [[#Session & Engagement|session timeout]] and for the [[#Session & Engagement|engaged session]]. Adjusting the timer for engaged sessions lets you define how long a user must stay active (e.g. 10s vs 30s) before GA4 counts it as engagement, which affects metrics like bounce rate and engagement rate.
+### Modify events
+By going to `Admin > Data Stream > Modify Events` you can adjust event parameters or rename events directly in GA4, so data is cleaned or standardized before being processed in reports. Here you can create rules that rename events or change their parameters by setting conditions (e.g. when event name = X, change it to Y), so GA4 processes and reports the adjusted version instead of the original.
+## Conversions setup
+In *Universal Analytics* and in the previous version of Google analytics the conversions are called **Goals**.
+In GA4, conversions are events you mark as **key business actions** (like purchases or sign-ups); they are important because they measure goal achievement and are used to optimize reports and linked ad platforms (e.g. [[Google Ads]]).
+There is a set of events which are by default created and mark as *conversion* (eg. `first visit` or `purchease`). You can see them by going to `Configure > Event` or `> Conversions`, there you can check and uncheck them as conversion or even add them.
+You can also **create a new event** by setting up conditions based on existing events. For example, if we want to track as conversion the viewing of the *thank-you-page*, we can set a double condition: `event_name - equals - page_view` and `page_location - contains - [thank you page]`. Then go to *conversion* tab and add the event you just created.
+## Get Events
+Events are the core of GA, they're essentially actions happening on our website or on our app by our users. Those actions are then processed and aggregated by GA and show to us in **reports**.
+### Recommended Events
+They are **predefined** by Google with **fixed names and parameters** (e.g., `purchase`, `login`, `search`). They aren’t automatically tracked, but Google _recommends_ you implement them because GA4 knows how to interpret and report on them in standard reports.
+
+To add them, [[Google Tag Manager#Recommended Events|configure GMT]] and you just see them in your reports.
 
 ## --------- OLD ---------
 ---

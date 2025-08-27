@@ -55,6 +55,8 @@ It’s part **knowledge base**, part **onboarding tool**, and part **personal op
 ---
 TODO
 ---
+- [ ] Add [how to create recommended events](https://www.youtube.com/watch?v=PEPb3uaVILk&t=168s) to [[Google Analytics]]
+- [ ] Add [how to create custom events](https://youtu.be/QmEOPuJr05w?si=9ZkVSpJG2SSZPS6A) to [[Google Analytics]]
 - [ ] Write *how to create a container* in [[Google Tag Manager]] doc
 - [ ] Add a section about bash, initialize with the script used to deploy trovapuli-frontend
 - [ ] Finish About Me section (add one or more page and linked them, as a portfolio)
