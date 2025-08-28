@@ -63,3 +63,6 @@ TODO
 - [ ] Add AI section (OpenAI, Gemini, etc.)
 - [ ] Document "Serverplan + NGINX + React" flow
 - [x] Initial structure
+- [ ] Add AI agent section
+- [ ] Landing page frameworks
+- [ ] Add Sales section
