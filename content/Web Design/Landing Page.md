@@ -9,3 +9,7 @@ status: bozza/completo/in_corso
 author: Il tuo nome (opzionale)
 description: Breve descrizione del contenuto del documento.
 ---
+
+| Titolo cella 1 | Titolo Cella 2 | Titolo Cella 3 |
+| -------------- | -------------- | -------------- |
+| cella 1 1      | cella 1 2      | cella 1 3      |
