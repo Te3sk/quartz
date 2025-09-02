@@ -18,6 +18,7 @@ description: This tool tracks and reports website traffic, user behavior, and co
 		- [[#Basic Metrics#Users|Users]]
 		- [[#Basic Metrics#Time measurement|Time measurement]]
 - [[#Setup account|Setup account]]
+	- [[#Setup account#Create and configure the Account|Create and configure the Account]]
 	- [[#Setup account#Basic setup - Data stream|Basic setup - Data stream]]
 	- [[#Setup account#Hardcoded measurement - Tag instructions|Hardcoded measurement - Tag instructions]]
 - [[#Additional Setup|Additional Setup]]
@@ -25,17 +26,20 @@ description: This tool tracks and reports website traffic, user behavior, and co
 	- [[#Additional Setup#Data Stream Tag Setting|Data Stream Tag Setting]]
 	- [[#Additional Setup#Modify events|Modify events]]
 - [[#Conversions setup|Conversions setup]]
+- [[#Get Events|Get Events]]
+	- [[#Get Events#Recommended Events|Recommended Events]]
 - [[#--------- OLD ---------|--------- OLD ---------]]
 - [[#GA4 Data Stream|GA4 Data Stream]]
-	- [[#Time measurement#1. Open the Web Data Stream and enable Enhanced Measurement|1. Open the Web Data Stream and enable Enhanced Measurement]]
-	- [[#Time measurement#2. Set the property's time zone and currency|2. Set the property's time zone and currency]]
-	- [[#Time measurement#3. Define your internal traffic (IP)|3. Define your internal traffic (IP)]]
-	- [[#Time measurement#4. Create Data Filter "Internal Traffic"|4. Create Data Filter "Internal Traffic"]]
+			- [[#Time measurement#1. Open the Web Data Stream and enable Enhanced Measurement|1. Open the Web Data Stream and enable Enhanced Measurement]]
+			- [[#Time measurement#2. Set the property's time zone and currency|2. Set the property's time zone and currency]]
+			- [[#Time measurement#3. Define your internal traffic (IP)|3. Define your internal traffic (IP)]]
+			- [[#Time measurement#4. Create Data Filter "Internal Traffic"|4. Create Data Filter "Internal Traffic"]]
 - [[#Send a page_view at each route change|Send a page_view at each route change]]
-	- [[#Modify events#Track Route Change|Track Route Change]]
-	- [[#Modify events#Config Google Tag Manager|Config Google Tag Manager]]
+		- [[#Recommended Events#Track Route Change|Track Route Change]]
+		- [[#Recommended Events#Config Google Tag Manager|Config Google Tag Manager]]
 - [[#Define Event taxonomy|Define Event taxonomy]]
 - [[#Send event from the app|Send event from the app]]
+
 ## Introduction
 **Google Analytics** is a web analytics service by Google that tracks and reports website or app traffic, user behavior, and conversion data.  
 It’s important because it provides actionable insights into how visitors interact with your content, which marketing channels drive the most engagement, and where improvements can be made to increase performance.  
@@ -109,57 +113,28 @@ By going to `Admin > Data Stream > [your data stream] > Configure tag settings` 
 * **`Adjust session timeout`:** you can edit the timing values for the [[#Session & Engagement|session timeout]] and for the [[#Session & Engagement|engaged session]]. Adjusting the timer for engaged sessions lets you define how long a user must stay active (e.g. 10s vs 30s) before GA4 counts it as engagement, which affects metrics like bounce rate and engagement rate.
 ### Modify events
 By going to `Admin > Data Stream > Modify Events` you can adjust event parameters or rename events directly in GA4, so data is cleaned or standardized before being processed in reports. Here you can create rules that rename events or change their parameters by setting conditions (e.g. when event name = X, change it to Y), so GA4 processes and reports the adjusted version instead of the original.
-## Conversions setup
-In *Universal Analytics* and in the previous version of Google analytics the conversions are called **Goals**.
-In GA4, conversions are events you mark as **key business actions** (like purchases or sign-ups); they are important because they measure goal achievement and are used to optimize reports and linked ad platforms (e.g. [[Google Ads]]).
-There is a set of events which are by default created and mark as *conversion* (eg. `first visit` or `purchease`). You can see them by going to `Configure > Event` or `> Conversions`, there you can check and uncheck them as conversion or even add them.
-You can also **create a new event** by setting up conditions based on existing events. For example, if we want to track as conversion the viewing of the *thank-you-page*, we can set a double condition: `event_name - equals - page_view` and `page_location - contains - [thank you page]`. Then go to *conversion* tab and add the event you just created.
 ## Get Events
 Events are the core of GA, they're essentially actions happening on our website or on our app by our users. Those actions are then processed and aggregated by GA and show to us in **reports**.
 ### Recommended Events
 They are **predefined** by Google with **fixed names and parameters** (e.g., `purchase`, `login`, `search`). They aren’t automatically tracked, but Google _recommends_ you implement them because GA4 knows how to interpret and report on them in standard reports.
 
 To add them, [[Google Tag Manager#Recommended Events|configure GMT]] and you just see them in your reports.
-
-## --------- OLD ---------
----
-## GA4 Data Stream
-A **Google Analytics Data Stream** is a data source that sends information from your website or app to Google Analytics 4.  
-Each stream (Web, iOS, or Android) contains its own unique measurement ID, which is used in your tracking setup to route collected events and user data to the correct GA property.
-##### 1. Open the Web Data Stream and enable Enhanced Measurement
-In [Google Analytics Workspace](https://analytics.google.com/analytics/) click on **`admin`**$\implies$**`Data Streams`** and create a new stream by selecting **`Web Stream`**. In **`Enhanced measurement`** tab select ON and choose and choose what to track automatically (*page views, scrolling, outbound clicks, site search, videos, files*). 
-
-If you will be sending page_views via GTM on route changes, disable “Page views” here to avoid duplicates.
-
-##### 2. Set the property's time zone and currency
-Go to **`Admin`** $\implies$ **`Property details`** and set up **Reporting time zone**
-##### 3. Define your internal traffic (IP)
-**Internal traffic** in GA4 refers to visits from your own team or network (e.g., office, home, VPN) that you want to exclude or mark.   By setting IP-based rules, GA4 labels these events with a `traffic_type` parameter, allowing you to filter them out so they don’t distort analytics or trigger remarketing.
-Go to **`Admin`** $\implies$ **`Data Streams`** $\implies$ select your Web Stream $\implies$ **`Configure tag settings`** $\implies$ **`Show More`** $\implies$ **`Define Internal Traffic`** $\implies$ **`Create`**. Now give the rule a name, 
-##### 4. Create Data Filter "Internal Traffic"
-Go to **`Admin`** $\implies$ **`Data Filters`** $\implies$ **`Internal Traffic`** (select or create) $\implies$ **`Exclude`**. Set `Testing` to validate then switch to `Active` when you're sure.
-## Send a page_view at each route change
-The **Pageview** sends an event in the `dataLayer` at every route change without reloading. This helps to correctly measure navigation and funnels in GA4, because GMT listens for that event and fires the GA4 `page_view` tag for each new view.
-#### Track Route Change
-Implement a helper that acts as a hook and captures page changes in your system. This implementation depends on the technology used to build the site.
-#### Config Google Tag Manager
-Now you have to enable **`page_view`** in GA4 by sending a custom event (`virtual_pageview`) to GMT at each route change.
-1. **GA4 Configuration Tag:** setup GA4 configuration tag without automatic sending of `page_view`
-Open [GMT Workspace](https://tagmanager.google.com), click **`Tag`** $\implies$ **`New`** $\implies$ **`Tag Type:`**`Google Analytics: GA4 Configuration`, and create a GA4 configuration tag with your measurement ID (`G-XXXX`). In the option, uncheck "*Send a page view event when this configuration loads*", this avoid double counting, set the trigger to *All Page* and save.
-
-If you have **Enhanced Measurement** $\implies$ **Pageviews enabled** in GA4, turn it off or coordinate carefully; otherwise, you'll end up with double/triple pageviews.
-
-2. **Tell to GMT which data to read in `dataLayer`:** In GMT create 3 variable with the following names: `page_location`, `page_path` and `page_title`. They will be needed soon to fill `page_view` parameters
-3. **Create `page_view` trigger:** create a ***Custom event*** trigger with **event name:** `virtual_pageview`, whenever your app pushes this event to the dataLayer, GTM will be able to react.
-4. **Create the tag that send `page_view` to GA4** and connect it to the custom event `virtual_pageview`: from GMT workspace, go to **`Tags`** $\implies$ **`New`** $\implies$ **`Tag Configuration`**, now select **`Google Analytics`** $\implies$ **`GA4 Event`**. In the page that opens you have to insert your `measurement ID`, the event name (`page_view`).
-Then open `Event Parameter` tab and add the 3 variables you set in step 2 as `Name: page_location; Value: {{page_location}}` (do the same for `page_path` and `page_title`). You can check all the [doc about event parameter](https://developers.google.com/analytics/devguides/collection/ga4/event-parameters?utm_source=chatgpt.com&client_type=gtag).
-5. **Connect the trigger `virtual_pageview`:** in the `trigger` tab, click *Add Trigger* and select the custom event `virtual_pageview` you set in step 3
-## Define Event taxonomy
-**Event taxonomy** is the shared schema that defines **which events** you track, **when** they should fire, and **what names/parameters** they use (e.g., `sign_up`, `purchase`, `value`, `currency`). It ensures **consistent, high-quality data** across your app, GTM, and GA4/Ads—preventing duplicates, standardizing naming and field formats, and enabling reliable reports, funnels, and conversions.
-In the [[Web Analysis#**Analytics Documentation – Structure Overview**|Analytics Documentation]], write the two list "***main events***" and "***secondary events***". The first will be the events interpreted as **conversions** and the second will be the less important events but which you still want to keep track of. Every point in the list must have 3 field: a description, the parameters needed and the trigger definition, is a best practice to add an example.
-## Send event from the app
-The goal of this step is to get the events to the analytics tools with correct timing, clear payload and without duplicates. 
-To make it, you have to encapsulate the push in a **single dispatcher** (like a `tracker(event, params)` function) to avoid scattered and inconsistent pushes.
-The events should be emitted **after the actual actions**, don't emit events on simple render/UI views if they aren't business relevant. If a flow contain more steps, send **an event for each step** and **a final event** for the result.
-The name of the events must be standard, clear and stable. The parameters must have consistent type and names (*sneak_case*) and you have to add metadata for multi-step.
-For **click, CTA and navigation**, choose only a way: track in the code or let the tag manager to do it, but avoid double tracking. 
+### Custom and DataLayer Events
+TODO
+## Conversions setup (Key Events)
+[Create or Modify Key Events - Official Doc](https://support.google.com/analytics/answer/12844695?hl=en)
+In *Universal Analytics* and in the previous version of Google analytics the conversions are called **Goals**.
+In GA4, conversions are events you mark as **key business actions** (like purchases or sign-ups); they are important because they measure goal achievement and are used to optimize reports and linked ad platforms (e.g. [[Google Ads]]).
+There is a set of events which are by default created and mark as *conversion* (eg. `first visit` or `purchease`). 
+You can set them by going to `Admin > Data Display > Events`. Now you will see 2 lists: `Events` that contain all the events you collected and `Key Events` that aren't already set up.
+You can create and modify events in Google Analytics. Modifying an event is a way of changing an existing event so it measures what you want it to measure. Creating an event copies over an existing event so you can measure what you want to measure without changing the original event.
+### Purchase - Default Key Event
+The `Purchase` event is the most striking conversion event, so GA4 automatically get it as a **key event** and you can't unmark it. 
+If you want, you can [[#Key Event Value|change the event value]].
+### Set Existing Event as Key Event
+By going to `Admin > Data Display > Events` and selecting  `Recent Events` list, you can see all the 100 most recent events your GA4 has received. To mark one of them as **key event**, just click on the **star icon on the left** in the row of the event you choose.
+If you want, you can [[#Key Event Value|change the event value]].
+### Key Event Value
+In Google Analytics key events, the **`value` parameter** represents the numerical worth associated with an interaction, such as the total price of a purchase or the monetary equivalent of a conversion. It is important because it allows GA4 to measure not just *how often* events happen, but also their **business impact**, enabling accurate revenue reporting, ROI calculations, and ad optimization. By assigning meaningful values, you ensure that analytics data reflects real outcomes rather than just user activity.
+By default, GA4 get the `value` parameter of the event as its **economic value**. Depending on the [[|parameters you send with the purchase event (TODO - ADD LINK TO THE RIGTH SECTION)]], you can modify the value by going to `Admin > Data Display > Events > 3 dot on Purchase > Set default key event value`.
+#### 

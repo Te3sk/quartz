@@ -41,7 +41,7 @@ Context provides a way to pass data through the component tree without having to
 ```jsx
 import { IconContext } from "react-icons";
 
-<IconContext.Provider value={{ color: "blue", className: "global-class-name" }}>
+<IconContext.Provider value={ { color: "blue", className: "global-class-name" }}>
 	<div>
 		<FaFolder />
 	</div>
@@ -83,7 +83,7 @@ function App() {
 	<Smile color="#3e9392" />
 
 	{/* parent element text-color value */}
-	<button style={{ color: "#fff" }}>
+	<button style={ { color: "#fff" }}>
 	    <Smile />
 	    Like
     </button>

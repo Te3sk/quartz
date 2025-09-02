@@ -97,7 +97,43 @@ To push an event in the dataLayer, just use the built-in function:
 ```js
 datalayer.push({"parameter-name" : "parameter-value"})
 ```
-The good practice is to have `"event_name" : "[name]"` as first parameters.
+The good practice is to have `"event_name" : "[name]"` as first parameters. 
+The specific implementation depends on which technology you used to build the site.
+##### Send Events to GA4
+To send event from dataLayer to [[Google Analytics|GA4]], you have to manually create a tag for each event:
+1. **Create Variables:** Go to `Variables > User-Defined Variables > New`, now give a simple and mnemonic name to the variable, choose `Data Layer Variable` as **Variable Type** and type in `Data Layer Variable Name` exactly as it appears in the datalayer. Do it for each event parameter you want to track.
+	If datalayer event contains arrays or other dynamic datas, you can use [[#Custom JavaScript Variables]].
+2. **Create Trigger:** Go to `Trigger > New`, choose `Custom Event` as **Trigger Type** and type the `Event Name` exactly as it appears in the datalayer object.
+3. **Create Tag:** Go to `Tag > New`, choose `Google Analytics: GA4 Event` as **Tag Type** and insert the Measurement ID of your [[Google Analytics|GA4]]. Now choose the `Event Name` you will see in your GA4 reports and insert in `Event Parameters` all the variable you want to track and you set before. Set the trigger you just create as trigger and save.
+### Custom JavaScript Variables
+**Custom JavaScript Variables (CJSV)** in Google Tag Manager allow you to extend GTM’s functionality by writing small JavaScript functions that dynamically return values.  
+They are especially useful when built-in variables are not enough or when you need to apply logic that adapts to specific conditions on your website or app.
+A Custom JavaScript Variable is essentially a JavaScript function that **must return a value**.  
+This value can be a string, number, boolean, array, or object, and GTM can then use it in tags, triggers, or even as input to other variables.  
+Each time the variable is referenced, GTM executes the function and retrieves the returned value.
+**Basic structure:**
+```javascript
+function() {
+  return "Hello World";
+}
+```
+**Common Applications**
+- **Transform values**: format or normalize data (e.g., lowercase URLs, format dates).
+- **Conditional logic**: return different values depending on user state, device type, or page.
+- **Extract data**: pull dynamic information from the DOM, cookies, or query parameters.
+- **Combine variables**: merge values from multiple GTM variables into one.
+- **Fallbacks**: provide default values when other variables are missing or undefined.
+**Best Practices:**
+- Keep functions **short, simple, and focused** on returning a value.
+- Always include a **fallback return** to avoid breaking triggers when expected data is missing.
+- Add comments explaining what the variable does and when it is used.
+- Avoid heavy logic or loops that may slow down page performance.
+- Minimize direct DOM dependencies; if the page structure changes, the variable should still fail gracefully.
+- Test in **GTM Preview Mode** and use `console.log` for debugging before publishing.
+**Limitations:**
+- CJSV run **client-side only**; they cannot access external libraries or APIs directly.
+- They are evaluated **on demand** when GTM calls them, not continuously in the background.
+- Complex logic is better handled in your application code or with dedicated scripts rather than inside GTM.
 ### Scroll Tracking - Advanced Measurement Example 
 First you have to create a **trigger**, to rule when you want to send the datas to GA4, by clicking on `Triggers > New`. Now name it (ex *custom scroll tracking*) and select `Scroll Depth` as Trigger Configuration. 
 Choose if you want to measure vertical, horizontal or both scrolling and type the percentage or the pixels value, that defines the point at which the trigger fires — either at a specific percentage of the total page height or after a fixed number of pixels from the top.
