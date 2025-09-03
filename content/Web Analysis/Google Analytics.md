@@ -9,37 +9,6 @@ status: in_corso
 author: Te3sk
 description: This tool tracks and reports website traffic, user behavior, and conversions, providing a comprehensive view of performance metrics.
 ---
-- [[#Introduction|Introduction]]
-- [[#How GA4 Works|How GA4 Works]]
-	- [[#How GA4 Works#How the measurement is done|How the measurement is done]]
-	- [[#How GA4 Works#Basic Metrics|Basic Metrics]]
-		- [[#Basic Metrics#User Identification|User Identification]]
-		- [[#Basic Metrics#Session & Engagement|Session & Engagement]]
-		- [[#Basic Metrics#Users|Users]]
-		- [[#Basic Metrics#Time measurement|Time measurement]]
-- [[#Setup account|Setup account]]
-	- [[#Setup account#Create and configure the Account|Create and configure the Account]]
-	- [[#Setup account#Basic setup - Data stream|Basic setup - Data stream]]
-	- [[#Setup account#Hardcoded measurement - Tag instructions|Hardcoded measurement - Tag instructions]]
-- [[#Additional Setup|Additional Setup]]
-	- [[#Additional Setup#Data Retention|Data Retention]]
-	- [[#Additional Setup#Data Stream Tag Setting|Data Stream Tag Setting]]
-	- [[#Additional Setup#Modify events|Modify events]]
-- [[#Conversions setup|Conversions setup]]
-- [[#Get Events|Get Events]]
-	- [[#Get Events#Recommended Events|Recommended Events]]
-- [[#--------- OLD ---------|--------- OLD ---------]]
-- [[#GA4 Data Stream|GA4 Data Stream]]
-			- [[#Time measurement#1. Open the Web Data Stream and enable Enhanced Measurement|1. Open the Web Data Stream and enable Enhanced Measurement]]
-			- [[#Time measurement#2. Set the property's time zone and currency|2. Set the property's time zone and currency]]
-			- [[#Time measurement#3. Define your internal traffic (IP)|3. Define your internal traffic (IP)]]
-			- [[#Time measurement#4. Create Data Filter "Internal Traffic"|4. Create Data Filter "Internal Traffic"]]
-- [[#Send a page_view at each route change|Send a page_view at each route change]]
-		- [[#Recommended Events#Track Route Change|Track Route Change]]
-		- [[#Recommended Events#Config Google Tag Manager|Config Google Tag Manager]]
-- [[#Define Event taxonomy|Define Event taxonomy]]
-- [[#Send event from the app|Send event from the app]]
-
 ## Introduction
 **Google Analytics** is a web analytics service by Google that tracks and reports website or app traffic, user behavior, and conversion data.  
 It’s important because it provides actionable insights into how visitors interact with your content, which marketing channels drive the most engagement, and where improvements can be made to increase performance.  
@@ -124,7 +93,7 @@ TODO
 ## Conversions setup (Key Events)
 [Create or Modify Key Events - Official Doc](https://support.google.com/analytics/answer/12844695?hl=en)
 In *Universal Analytics* and in the previous version of Google analytics the conversions are called **Goals**.
-In GA4, conversions are events you mark as **key business actions** (like purchases or sign-ups); they are important because they measure goal achievement and are used to optimize reports and linked ad platforms (e.g. [[Google Ads]]).
+In GA4, [[Google Ads#1.1 Key Metrics of Google Ads|conversions]] are events you mark as **key business actions** (like purchases or sign-ups); they are important because they measure goal achievement and are used to optimize reports and linked ad platforms (e.g. [[Google Ads]]).
 There is a set of events which are by default created and mark as *conversion* (eg. `first visit` or `purchease`). 
 You can set them by going to `Admin > Data Display > Events`. Now you will see 2 lists: `Events` that contain all the events you collected and `Key Events` that aren't already set up.
 You can create and modify events in Google Analytics. Modifying an event is a way of changing an existing event so it measures what you want it to measure. Creating an event copies over an existing event so you can measure what you want to measure without changing the original event.
@@ -137,4 +106,3 @@ If you want, you can [[#Key Event Value|change the event value]].
 ### Key Event Value
 In Google Analytics key events, the **`value` parameter** represents the numerical worth associated with an interaction, such as the total price of a purchase or the monetary equivalent of a conversion. It is important because it allows GA4 to measure not just *how often* events happen, but also their **business impact**, enabling accurate revenue reporting, ROI calculations, and ad optimization. By assigning meaningful values, you ensure that analytics data reflects real outcomes rather than just user activity.
 By default, GA4 get the `value` parameter of the event as its **economic value**. Depending on the [[|parameters you send with the purchase event (TODO - ADD LINK TO THE RIGTH SECTION)]], you can modify the value by going to `Admin > Data Display > Events > 3 dot on Purchase > Set default key event value`.
-#### 

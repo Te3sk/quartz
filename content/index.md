@@ -66,3 +66,5 @@ TODO
 - [ ] Add AI agent section
 - [ ] Landing page frameworks
 - [ ] Add Sales section
+- [ ] [[Google Ads]]
+	- [ ] Solve [[Google Ads#3.1.1 Search Query]] and [[Google Ads#3.2.1 Search Queries vs. Keywords]] redundancy
