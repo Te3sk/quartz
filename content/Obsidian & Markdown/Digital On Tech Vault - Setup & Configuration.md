@@ -75,10 +75,15 @@ Automatically generates a table of contents based on the headings of the current
 Allows you to define custom snippets that expand into text, metadata blocks, code templates, or symbols. Speeds up note-taking and ensures consistent formatting across the vault.
 
 **Usage**:  
-- Trigger snippet replacement via **Cmd/Ctrl + Tab** or the Command Palette.  
-- Snippets can include cursor jumps (`$tb$`), line breaks (`$nl$`), and placeholders (`$end$`).  
-- Example: typing a keyword like `metadata` and expanding it generates a ready-to-fill document template.  
+- By default, snippets can be expanded using **Cmd/Ctrl + Tab**, this shortcut is not recommended because it conflicts with Obsidian’s native tab navigation.  
+- Go to **Settings → Community Plugins → Text Snippets → Hotkeys** to change the keyboard shortcut.  
+- We suggest setting it to **Shift + Tab** for smooth usage without conflicts.  
+- Snippets can also be triggered from the **Command Palette** (`Cmd/Ctrl + P`).  
+- Placeholders such as `$tb$` (tabstop), `$nl$` (newline), and `$end$` (cursor position) allow for flexible templates.  
+- Example: typing a keyword like `metadata` and expanding it generates a ready-to-fill document template.
+
 **Currently defined snippets in the Digital On Tech Vault**:  
+Copy the following snippets and paste them in the settings page of the plugin.
 ```
 metadata : ---$nl$title: Nome del tuo documento$nl$date: YYYY-MM-DD$nl$tags:$nl$   - tag1$nl$   - tag2$nl$category: Categoria Principale$nl$status: bozza/completo/in_corso$nl$author: Il tuo nome (opzionale)$nl$related:$nl$   - [[Link Interno 1]]$nl$   - [[Link Interno 2]]$nl$description: Breve descrizione del contenuto del documento.$nl$---
 
@@ -134,19 +139,38 @@ mmath : $$$tb$$$
 - **Hotkeys**: Assign hotkeys for frequently used plugin commands (e.g., Table of Contents generation, snippet expansion). This reduces reliance on the command palette.  
 - **Workspace layout**: Keep sidebars tidy, with **File Explorer**, **Search**, and **Backlinks** pinned in the left sidebar; reserve the right sidebar for **Graph View** and **Outline**.  
 - **Consistency**: All team members should maintain a similar workspace configuration to minimize confusion during collaboration.
-
-
----
-
 # 3. Collaboration Guidelines
+To ensure the **Digital On Tech Vault** remains consistent, navigable, and collaborative, all contributors must follow the same organizational rules and editing practices.  
 
-- Naming conventions for notes and folders.
-    
-- How to create internal links and hub notes.
-    
-- Use of tags for transversal classification.
-    
-- Best practices for keeping the vault clean and consistent.
+- **Folder and Indexing Structure**  
+  The vault is organized into **folders for each macro-topic** (e.g., *Web Development*, *Web Analysis*).  
+  Inside each folder, there must be an **index file** with the same name as the folder. This file introduces the macro-topic and provides an index of all related content within that section.  
+- **Naming Conventions**  
+  Notes and folders must use **clear, descriptive titles**. File names should reflect the actual content and avoid ambiguous terms.  
+  Example: use `Google Analytics – Events` instead of `events-final`.  
+- **Images and Assets**  
+  All images must be stored in the **`Assets` folder**, located inside the `Content` directory.  
+  Use a clear naming convention for images: combine the related topic with a short description, separated by a dash.  
+  Example: `GoogleAnalytics-dashboard.png`, `Obsidian-graph-view.png`.  
+- **Headers and Numbering**  
+  All documents must follow a **hierarchical numbering system** for headers:  
+  - Level 1 headers → `1`, `2`, `3`  
+  - Level 2 headers → `1.1`, `1.2`, `2.1`, `2.2`  
+  - Level 3 headers → `1.1.1`, `1.1.2`, etc.  
+  This ensures structure is clear and consistent across all notes.  
+- **Internal Links and Hub Notes**  
+  Use `[[Internal Links]]` to connect related notes.  
+  For complex topics, create **hub notes** that summarize and link to smaller, atomic notes, ensuring easy navigation across the vault.  
+- **Tags for Transversal Classification**  
+  Use **tags** (e.g., `#todo`, `#meeting`, `#reference`) to classify notes across different sections. Tags should be consistent and shared across the team to allow transversal filtering.  
+- **Best Practices for Clean Documentation**  
+  - Avoid duplicate notes by linking to existing ones.  
+  - Keep notes atomic and focused on a single topic.  
+  - Regularly review and refactor hub notes to reflect updates.  
+  - Do not overload folders with unrelated files—place content where it logically belongs.  
+
+By applying these guidelines, the vault remains a **living, coherent knowledge base** that can scale with the team and be easily understood by both current and future contributors.
+
     
 
 ---
