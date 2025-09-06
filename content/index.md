@@ -6,17 +6,25 @@ category:
 status: in_corso
 author: Te3sk
 ---
-# Niccolò's Tech Vault
+# Digital On Tech Vault
 
-Welcome to my **personal knowledge vault** – a curated collection of everything I've learned (and struggled with) as a developer.
-
-This space is designed to serve **three main purposes**:
-- Help me and my teammates **solve recurring problems** faster  
-- Document real-world **tools, workflows, and tech stacks** I’ve used  
-- Showcase my **engineering mindset** and documentation habits to potential collaborators
-
-Everything here is based on **first-hand experience** – no recycled boilerplate, just distilled knowledge and hard-earned lessons.
-
+### About the Company
+- **Mission & Vision** → cosa fa l’azienda e perché.
+- **Core Values** → principi guida, cultura, approccio al lavoro.
+- **What We Do** → breve descrizione dei servizi/prodotti principali.
+- **Industries Served** → i settori in cui operate.
+### Organization & Team
+- **Company Structure** → organigramma ad alto livello (es. CEO, CTO, Product, Marketing).
+- **Teams & Roles** → descrizione dei reparti principali (Dev, Design, Marketing, Support).
+- **Key Contacts** → per uso interno, link a directory o documenti con riferimenti.
+### Products & Services
+- **Main Products/Platforms** → descrizione sintetica di ogni prodotto con link alla documentazione tecnica.
+- **Services Offered** → panoramica dei servizi (es. sviluppo software, automazione, consulenza, ecc.).
+- **Case Studies / Portfolio** (opzionale) → esempi di progetti di riferimento.
+### Onboarding & Knowledge Sharing
+- **New Hire Onboarding** → guida per i nuovi dipendenti (setup ambiente, accessi).
+- **Internal Documentation** → link ad altre sezioni del Vault.
+- **Learning Resources** → corsi interni, knowledge base, standard di formazione.
 ---
 ## Vault Structure
 
@@ -40,21 +48,16 @@ Here’s a quick map to explore the content:
 * [[Web Analysis]]
 	* [[Google Tag Manager]]
 	* [[Google Analytics]]
-
 ---
-## About Me
-
-I'm **Niccolò Fulgaro**, a full-stack developer with a strong academic foundation and a practical mindset.  
-My expertise spans **modern web development** (React, Tailwind, Firebase, Stripe) and **system-level programming** (C, C++, Python), with a growing focus on automation and AI integrations.
-
-Besides coding, I also **teach advanced digital skills** to students and educators, helping them bridge the gap between theory and real-world application. I believe in building not just software, but **competence** – for myself and for those I work with.
-
-This vault reflects how I think, how I solve problems, and how I guide others in doing the same.  
-It’s part **knowledge base**, part **onboarding tool**, and part **personal operating system**.
-
----
-TODO
----
+# TODO
+- [ ] Fill [[#Digital On Tech Vault|DO infos]]
+- [ ] Obsidian & Markdown infos
+	- [ ] fill [[Obsidian & Markdown|introduction]]
+	- [ ] create and fill all the files (structure in the [[Obsidian & Markdown|introduction]])
+	- [ ] [[Digital On Tech Vault - Setup & Configuration]]
+- [ ] Git & Version control
+	- [ ] fill [[Git & Version Control|introduction]]
+	- [ ] create and file all the files (structure in [[Git & Version Control|introduction]])
 - [ ] Add [how to create recommended events](https://www.youtube.com/watch?v=PEPb3uaVILk&t=168s) to [[Google Analytics]]
 - [ ] Add [how to create custom events](https://youtu.be/QmEOPuJr05w?si=9ZkVSpJG2SSZPS6A) to [[Google Analytics]]
 - [ ] Write *how to create a container* in [[Google Tag Manager]] doc
