@@ -89,7 +89,27 @@ They are **predefined** by Google with **fixed names and parameters** (e.g., `pu
 
 To add them, [[Google Tag Manager#Recommended Events|configure GMT]] and you just see them in your reports.
 ### Custom and DataLayer Events
-TODO
+When the predefined **recommended events** do not cover your specific use case, you can create **custom events**.  
+Custom events allow you to define your own event names and parameters that better reflect the actions users take on your website or app. Examples include `newsletter_signup`, `video_played`, or `form_error`.
+
+The most reliable way to send these events is through the **Data Layer** and **Google Tag Manager (GTM)**:
+1. **Push the event to the Data Layer**  
+   Add a JavaScript snippet to your site or app that pushes the event when the action occurs:  
+   ```js
+   dataLayer.push({
+     event: "newsletter_signup",
+     user_email: "user@example.com",
+     signup_source: "homepage"
+   });
+   ```
+2. [[Google Tag Manager#DataLayer|Capture the event in GTM]]
+3. **Validate the implementation**
+    - Use **GTM Preview Mode** to confirm the event is firing.
+    - Check **GA4 DebugView** to verify the event and its parameters are received correctly.
+4. **Use in reporting**  
+    Once published, GA4 will start collecting the event.
+    - Custom events appear under **Reports → Engagement → Events**.
+    - Parameters can be registered as **custom dimensions or metrics** to make them available in standard and custom reports.
 ## Conversions setup (Key Events)
 [Create or Modify Key Events - Official Doc](https://support.google.com/analytics/answer/12844695?hl=en)
 In *Universal Analytics* and in the previous version of Google analytics the conversions are called **Goals**.

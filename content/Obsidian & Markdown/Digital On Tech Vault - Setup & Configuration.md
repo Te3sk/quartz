@@ -143,55 +143,51 @@ mmath : $$$tb$$$
 To ensure the **Digital On Tech Vault** remains consistent, navigable, and collaborative, all contributors must follow the same organizational rules and editing practices.  
 
 - **Folder and Indexing Structure**  
-  The vault is organized into **folders for each macro-topic** (e.g., *Web Development*, *Web Analysis*).  
-  Inside each folder, there must be an **index file** with the same name as the folder. This file introduces the macro-topic and provides an index of all related content within that section.  
+	  The vault is organized into **folders for each macro-topic** (e.g., *Web Development*, *Web Analysis*).  
+	  Inside each folder, there must be an **index file** with the same name as the folder. This file introduces the macro-topic and provides an index of all related content within that section.  
 - **Naming Conventions**  
-  Notes and folders must use **clear, descriptive titles**. File names should reflect the actual content and avoid ambiguous terms.  
-  Example: use `Google Analytics – Events` instead of `events-final`.  
+	  Notes and folders must use **clear, descriptive titles**. File names should reflect the actual content and avoid ambiguous terms.  
+	  Example: use `Google Analytics – Events` instead of `events-final`.  
 - **Images and Assets**  
-  All images must be stored in the **`Assets` folder**, located inside the `Content` directory.  
-  Use a clear naming convention for images: combine the related topic with a short description, separated by a dash.  
-  Example: `GoogleAnalytics-dashboard.png`, `Obsidian-graph-view.png`.  
-- **Headers and Numbering**  
-  All documents must follow a **hierarchical numbering system** for headers:  
-  - Level 1 headers → `1`, `2`, `3`  
-  - Level 2 headers → `1.1`, `1.2`, `2.1`, `2.2`  
-  - Level 3 headers → `1.1.1`, `1.1.2`, etc.  
-  This ensures structure is clear and consistent across all notes.  
+	  All images must be stored in the **`Assets` folder**, located inside the `Content` directory.  
+	  Use a clear naming convention for images: combine the related topic with a short description, separated by a dash.  
+	  Example: `GoogleAnalytics-dashboard.png`, `Obsidian-graph-view.png`.  
+- **Headers and Numbering:** All documents must follow a **hierarchical numbering system** for headers:  
+	- Level 1 headers → `1`, `2`, `3`  
+	- Level 2 headers → `1.1`, `1.2`, `2.1`, `2.2`  
+	- Level 3 headers → `1.1.1`, `1.1.2`, etc.  
+	  This ensures structure is clear and consistent across all notes.  
 - **Internal Links and Hub Notes**  
-  Use `[[Internal Links]]` to connect related notes.  
-  For complex topics, create **hub notes** that summarize and link to smaller, atomic notes, ensuring easy navigation across the vault.  
+	  Use `[[Internal Links]]` to connect related notes.  
+	  For complex topics, create **hub notes** that summarize and link to smaller, atomic notes, ensuring easy navigation across the vault.  
 - **Tags for Transversal Classification**  
-  Use **tags** (e.g., `#todo`, `#meeting`, `#reference`) to classify notes across different sections. Tags should be consistent and shared across the team to allow transversal filtering.  
+	  Use **tags** (e.g., `#todo`, `#meeting`, `#reference`) to classify notes across different sections. Tags should be consistent and shared across the team to allow transversal filtering.  
 - **Best Practices for Clean Documentation**  
-  - Avoid duplicate notes by linking to existing ones.  
-  - Keep notes atomic and focused on a single topic.  
-  - Regularly review and refactor hub notes to reflect updates.  
-  - Do not overload folders with unrelated files—place content where it logically belongs.  
+	- Avoid duplicate notes by linking to existing ones.  
+	- Keep notes atomic and focused on a single topic.  
+	- Regularly review and refactor hub notes to reflect updates. 
+	- Do not overload folders with unrelated files—place content where it logically belongs.  
 
 By applying these guidelines, the vault remains a **living, coherent knowledge base** that can scale with the team and be easily understood by both current and future contributors.
+# 4. Troubleshooting (Obsidian Only)
+This section covers common issues that may occur when working with Obsidian and how to resolve them.  
+Problems related to Git (e.g., repository sync, merge conflicts) are **not included here** and are documented separately.
+**Common Issues**  
+- *Missing plugins*: check **Settings → Community Plugins** and ensure the required plugins are enabled.  
+- *Display problems*: reset appearance settings or switch between light/dark mode to verify if the issue persists.  
+- *Corrupted settings*: rename or delete the `.obsidian` folder inside the vault, then restart Obsidian. This will reset all configurations to default.
 
-    
+**Resetting the Workspace Layout**  
+If the interface becomes cluttered or unusable, go to **Settings → Core Plugins → Workspaces** and reload a saved workspace.  
+Alternatively, you can reset the layout by closing all panes and reopening the vault.
 
----
+**Disabling or Removing Problematic Plugins**  
+If a community plugin causes errors or performance issues:  
+  1. Go to **Settings → Community Plugins → Installed plugins**.  
+  2. Toggle the switch to disable it.  
+  3. To remove it completely, click on the plugin and select **Uninstall**.  
+Restart Obsidian to confirm the issue has been resolved.
 
-## 5. Maintenance & Updates
-
-- Keeping Obsidian and plugins up to date.
-    
-- Periodic review of vault structure and consistency.
-    
-- Referencing Git documentation for repository sync and conflict management.
-    
-
----
-
-## 6. Troubleshooting (Obsidian Only)
-
-- Common issues with Obsidian (e.g., missing plugins, display problems, corrupted settings).
-    
-- How to reset the workspace layout.
-    
-- How to disable or remove problematic community plugins.
-    
-- Reference to Git troubleshooting (handled in a separate document).
+**Reference to Git Troubleshooting**  
+Issues related to cloning, pulling, committing, or pushing the repository are outside the scope of this section.
+Refer to the **Git & Version Control – Troubleshooting** document for detailed guidance.

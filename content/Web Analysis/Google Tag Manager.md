@@ -23,7 +23,17 @@ There are **3 main instances:**
 ## Setup
 [Google press official releases regarding GA4](https://support.google.com/analytics/answer/9164320#071122&zippy=%2Creleases)
 ### Create and Configure Account
-**TODO**
+To start using **Google Tag Manager (GTM)**, you first need to create an account and set up a container:
+1. Go to [Google Tag Manager](https://tagmanager.google.com) and log in with your company Google account.  
+2. Click on **Create Account**.  
+	- Enter the **Account Name** (e.g., Digital On).  
+	- Select the **Country** where your business operates.  
+3. Create a **Container** for your website:  
+	- Enter the **Container Name** (usually your website domain, e.g., `digitalon.com`).  
+	- Choose the **Target Platform** → select **Web** (unless you are configuring for iOS, Android, or a server container).  
+4. Click **Create** and accept the Terms of Service.  
+
+Once the account and container are created, GTM will provide you with the installation code snippets for your website. These snippets must be added before you can start configuring tags, triggers, and variables.
 ### Install the GMT Manager Code
 First you have to create the **connection between GMT and your website**. To do that, in [GMT Workspace](https://tagmanager.google.com) **create a container** and then click `Admin > Install Google Tag Manager`. There  you can find 2 HTML tag and you have to paste them in the HTML files of your website (each page), one in the `<head>` and the other in the `<body>`.
 ### GA4 Configuration Tag
@@ -35,7 +45,6 @@ Depending on the version of GMT, `Google Analytics: GA4 Configuration` may be **
 Now, in [Google Analytics Workspace](https://analytics.google.com/analytics/), go to `Admin > Data Stream > [your data stream] > Configure Tag Settings`; here, under *Your Google Tag*, click the Google tag (left side of diagram) and copy the **Google Tag ID** under *Tag Details*.
 Return to the GMT tab and paste the **Google Tag ID** in the file that requires it.
 As **trigger** choose `Initialization - All Pages`, in this way the tag will be loaded before the others tags (pageview or DOM).
-
 ### Events Configuration
 There are way to **send event information** to GA4 by GMT:
 * **Recommended Events:** those events are know by GMT, so you can choose the one you need from a list and easily set them up
