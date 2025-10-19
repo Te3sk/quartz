@@ -1,0 +1,1 @@
+this subdir explain how to create wallet pass for apple and android

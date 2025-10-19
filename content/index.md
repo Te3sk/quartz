@@ -51,6 +51,8 @@ Here’s a quick map to explore the content:
 ---
 # TODO
 - [ ] Fill [[#Digital On Tech Vault|DO infos]]
+- [ ] Add Real Project path
+- [ ] Add Wallet API path
 - [ ] Git & Version control
 	- [ ] fill [[Git & Version Control|introduction]]
 	- [ ] create and file all the files (structure in [[Git & Version Control|introduction]])
