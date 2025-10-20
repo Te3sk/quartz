@@ -7,7 +7,7 @@ tags:
   - api
   - ui
 category: Wallet API
-status: in_corso
+status: completed
 author: Te3sk
 description: Key concept and terminology related to Google Wallet API
 ---

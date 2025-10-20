@@ -31,6 +31,9 @@ Here’s a quick map to explore the content:
 	* [[Google Ads]]
 * [[Git & Version Control]]
 	* [[Git Commands]]
+* [[Wallet API]]
+	* [[Google Wallet API]]
+	* TODO APPLE WALLET API
 # About the Company
 - **Mission & Vision** → cosa fa l’azienda e perché.
 - **Core Values** → principi guida, cultura, approccio al lavoro.
