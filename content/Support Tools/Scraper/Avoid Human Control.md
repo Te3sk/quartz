@@ -51,7 +51,6 @@ driver.get("https://httpbin.io/ip")
 driver.close()
 ```
 [[Selenium - IP Rotation & Proxy|Detailed Guide]]
-[GUIDE - How to Use a Proxy With Selenium in Python (2025)](https://www.zenrows.com/blog/selenium-proxy)
 ## 2. Disabling the Automation Indicator WebDriver Flags
 While web scraping with Selenium, the WebDriver sends information to the server to indicate the request is automated.
 

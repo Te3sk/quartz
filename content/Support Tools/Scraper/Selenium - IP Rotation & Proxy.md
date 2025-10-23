@@ -12,6 +12,8 @@ status: in_corso
 author: Te3sk
 description: Breve descrizione del contenuto del documento.
 ---
+
+[GUIDE - How to Use a Proxy With Selenium in Python (2025)](https://www.zenrows.com/blog/selenium-proxy)
 # What Is a Selenium Proxy?
 A proxy acts as an intermediary between a client and a server. Through it, the client makes requests to other servers anonymously and securely and avoids geographical restrictions.
 
@@ -78,7 +80,7 @@ Let's go over the whole process step-by-step.
 
 First, get a free proxy address from the [Free Proxy List](https://free-proxy-list.net/) website. Configure Selenium with [`Options`](https://www.selenium.dev/documentation/webdriver/drivers/options/) to launch Chrome using a proxy. Then, print the body content of the target webpage.
 
-```python title="scraper.py" {8, 10-13}
+```python title="scraper.py" {7-8, 10-13}
 from selenium import webdriver
 from selenium.webdriver.chrome.service import Service
 from webdriver_manager.chrome import ChromeDriverManager
@@ -130,7 +132,7 @@ pip install blinker==1.7.0 selenium-wire
 ```
 
 Use Selenium Wire for proxy authentication, as shown below:
-```python title="scraper.py" {7-11, 13-14, 16-21, 25}
+```python title="scraper.py" {7-11, 13-14, 16-21, 24-26}
 from seleniumwire import webdriver
 from selenium.webdriver.chrome.service import Service
 from webdriver_manager.chrome import ChromeDriverManager
@@ -183,12 +185,114 @@ Another useful protocol for Selenium proxies is SOCKS5, also known as SOCKS. It 
 
 **Overall, HTTP and HTTPS proxies are good for web scraping and crawling, and SOCKS finds applications in tasks that involve non-HTTP traffic.**
 # Use a Rotating Proxy in Selenium With Python
-If your script makes several requests in a short interval, the server may consider it suspicious and block your IP. Websites can detect and block requests from specific IP addresses, making it difficult for you to scrape data effectively.
+**If your script makes several requests in a short interval**, the server may consider it suspicious and block your IP. Websites can detect and block requests from specific IP addresses, making it difficult for you to scrape data effectively.
 
 However, using a rotating proxy approach can solve this problem. **By [switching proxies in Selenium](https://www.zenrows.com/blog/rotating-proxy-selenium-python) after a particular period or number of requests, your end IP will keep changing. This makes you appear as a different user each time, preventing the server from banning you.**
 
 Let's learn how to build a proxy rotator in Selenium with `selenium-wire`.
-
 First, you need to create a pool of proxies. In this example, we'll use some free proxies.
 
 Store them in an array as follows:
+```python title="scraper.py"
+PROXIES = [
+    "http://19.151.94.248:88",
+    "http://149.169.197.151:80",
+    # ...
+    "http://212.76.118.242:97"
+]
+```
+Then, extract a random proxy with `random.choice()` and use it to initialize a new driver instance. Here's what your final code should look like:
+```python title="scraper.py" {9-15, 17-18, 20-26}
+from seleniumwire import webdriver
+from selenium.webdriver.chrome.service import Service
+from webdriver_manager.chrome import ChromeDriverManager
+from selenium.webdriver.chrome.options import Options
+from selenium.webdriver.common.by import By
+
+import random
+
+# the list of proxy to rotate on 
+PROXIES = [
+    "http://20.235.159.154:80",
+    "http://149.169.197.151:80",
+    # ...
+    "http://212.76.118.242:97"
+]
+
+# randomly select a proxy
+proxy = random.choice(PROXIES)
+
+# set selenium-wire options to use the proxy
+seleniumwire_options = {
+    "proxy": {
+        "http": proxy,
+        "https": proxy
+    },
+}
+
+# set Chrome options to run in headless mode
+options = Options()
+options.add_argument("--headless=new")
+
+# initialize the Chrome driver with service, selenium-wire options, and chrome options
+driver = webdriver.Chrome(
+    service=Service(ChromeDriverManager().install()),
+    seleniumwire_options=seleniumwire_options,
+    options=options
+)
+
+# navigate to the target webpage
+driver.get("https://httpbin.io/ip")
+
+# print the body content of the target webpage
+print(driver.find_element(By.TAG_NAME, "body").text)
+
+# release the resources and close the browser
+driver.quit()
+```
+The following is the output for manually running this code three times:
+```json title="Output"
+# request 1
+{
+    "origin": "149.169.197.151:1286"
+}
+
+# request 2
+{
+    "origin": "20.235.159.154:3224"
+}
+
+# request 3
+{
+    "origin": "212.76.118.242:97"
+}
+```
+Well done! You’ve just built a working Selenium proxy rotator. You can learn more tips and trick in our definitive guide on how to [rotate proxies in Python](https://www.zenrows.com/blog/rotate-proxies-python).
+
+However, most requests will fail since free proxies are error-prone. That's why you should add retry logic with random timeouts.
+
+But that's not the only issue. Try to test the IP rotator logic against [G2 Reviews](https://www.g2.com/products/asana/reviews), a website protected by anti-bot technologies:
+```python title="scraper.py"
+driver.get("https://www.g2.com/products/asana/reviews")
+```
+You'll get the following output:
+```html title="Output"
+<!DOCTYPE html>
+<html class="no-js" lang="en-US">
+<head>
+  <title>Attention Required! | Cloudflare</title>
+</head>
+<body>
+    <!-- ... -->
+      <div class="cf-wrapper cf-header cf-error-overview">
+        <h1 data-translate="block_headline">Sorry, you have been blocked</h1>
+      </div>
+    <!-- ... -->
+</body>
+</html>
+```
+The target server detected the rotating proxy Selenium request as a bot and responded with a [`403 Unauthorized`](https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/403) error.
+
+In fact, free proxies will usually get you blocked. We used them to demonstrate the basics, but you should never rely on them in a real-world project.
+
+The solution? A premium proxy!
