@@ -8,9 +8,9 @@ tags:
   - selenium
   - python
 category: Support Tools - Scraper
-status: in_corso
+status: completed
 author: Te3sk
-description: Breve descrizione del contenuto del documento.
+description: "A concise, hands-on guide to using proxies with Selenium in Python: it covers basic --proxy-server setup, authenticated proxies via Selenium Wire, rotating proxy pools, and headless Chrome IP checks. It also compares HTTP/HTTPS/SOCKS5, adds retry/backoff tips, and warns that free proxies often trigger bot defenses—recommending premium options."
 ---
 
 [GUIDE - How to Use a Proxy With Selenium in Python (2025)](https://www.zenrows.com/blog/selenium-proxy)
