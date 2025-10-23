@@ -55,7 +55,6 @@ Here’s a quick map to explore the content:
 # TODO
 - [ ] Fill [[#Digital On Tech Vault|DO infos]]
 - [ ] Add Real Project path
-- [ ] Add Wallet API path
 - [ ] Git & Version control
 	- [ ] fill [[Git & Version Control|introduction]]
 	- [ ] create and file all the files (structure in [[Git & Version Control|introduction]])
@@ -66,6 +65,7 @@ Here’s a quick map to explore the content:
 - [ ] Add Sales section
 - [ ] [[Google Ads]]
 	- [ ] Solve [[Google Ads#3.1.1 Search Query]] and [[Google Ads#3.2.1 Search Queries vs. Keywords]] redundancy
+- [x] Add Wallet API path
 - [x] Obsidian & Markdown infos
 	- [x] fill [[Obsidian & Markdown|introduction]]
 	- [x] create and fill all the files (structure in the [[Obsidian & Markdown|introduction]])

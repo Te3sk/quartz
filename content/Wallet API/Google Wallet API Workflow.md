@@ -5,6 +5,8 @@ tags:
   - api
   - tools
   - ui
+  - workflow
+  - back-end
 category: Wallet API
 status: completed
 author: Te3sk
